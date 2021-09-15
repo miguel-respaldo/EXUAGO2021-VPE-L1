@@ -10,3 +10,16 @@ a,b,c = frutas
 print(a)
 print(b)
 print(c)
+
+
+numeros = [1, 2.0, 3, 4.5]
+a,b,c,d = numeros
+print(a)
+print(b)
+print(c)
+print(d)
+
+print(type(a))
+print(type(b))
+print(type(c))
+print(type(d))
