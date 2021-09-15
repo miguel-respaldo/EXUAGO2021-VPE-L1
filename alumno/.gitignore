@@ -1,0 +1,7 @@
+# Archivos de los alumnos
+*.py
+*.csv
+*.txt
+*.psc
+*.xlsx
+*.go
