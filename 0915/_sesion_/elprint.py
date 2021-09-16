@@ -9,3 +9,7 @@ cadena="Mundo"
 
 print("Hola " + cadena)
 print("Hola", cadena)
+
+
+numero=5
+print(numero,cadena)
