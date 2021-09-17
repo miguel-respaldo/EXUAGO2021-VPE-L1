@@ -12,6 +12,16 @@ print("x & 4  = {:>3d} = {:>6b}".format(x & 4, x & 4))
 print("x | 1  = {:>3d} = {:>6b}".format(x | 1, x | 1))
 print("x ^ 4  = {:>3d} = {:>6b}".format(x ^ 4, x ^ 4))
 print("~x     = {:>3d} = {:>6b}".format(~x , ~x))
+
+# x  = 22 -> 0000 0001 0110   En C un int son 4 bytes = 2^32 = 32bits
+# ~x =>      1111 1110 1001 
+
+# Complemento a 2 
+# y = 2  ->  0010
+# y = -2 ->  1101 -> 1110
+# z = -3 ->          1101
+#      11
+
 print("x << 1 = {:>3d} = {:>6b}".format(x << 1, x << 1))
 print("x >> 2 = {:>3d} = {:>6b}".format(x >> 2, x >> 2))
 
