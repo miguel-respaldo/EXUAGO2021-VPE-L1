@@ -8,3 +8,4 @@
 numero = eval(input("Ingresa un número: "))
 
 print("el número que ingresaste fue", numero)
+print(type(numero)) 
