@@ -11,5 +11,5 @@ numero3 = eval(input("Ingrese tercero numero:"))
 numero4 = eval(input("Ingrese cuarto numero:"))
 numero5 = eval(input("Ingrese quinto numero:"))
 
-# imprime la suma de todos los numero estre 5, calculando asi el promerdio
+# imprime la suma de todos los numero, dividiendo estos entre 5, calculando asi el promerdio
 print("Promedio:", ((numero1 + numero2 + numero3 + numero4 + numero5)/5))
