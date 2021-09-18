@@ -5,13 +5,15 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-print("Ingresa 5 numeros")
+print("Ingresa 5 numeros")#  cantidad de numeros a ingresar
+# Posteriormente se ingresan los numero de uno en uno
+numero1 = eval(input("Ingresa numero 1: "))
+numero2 = eval(input("Ingresa numero 2: "))
+numero3 = eval(input("Ingresa numero 3: "))
+numero4 = eval(input("Ingresa numero 4: "))
+numero5 = eval(input("Ingresa numero 5: "))
 
-numero1 = eval(input("Ingresa numero: "))
-numero2 = eval(input("Ingresa numero: "))
-numero3 = eval(input("Ingresa numero: "))
-numero4 = eval(input("Ingresa numero: "))
-numero5 = eval(input("Ingresa numero: "))
-
+# Se realiza la suma de los cinco numeros y se promedian para guardarlos en
+# la variable promedio
 promedio = ((numero1 + numero2 + numero3 + numero4 + numero5) / 5 )
-print("el promedio es", promedio)
+print("el promedio es", promedio)# Se imprime el promedio de los 5 numeros
