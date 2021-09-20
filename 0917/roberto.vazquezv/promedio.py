@@ -5,12 +5,15 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-print("Calculadora de promedio de 5 numeros\n") #Titulo
+#Programa que calcula la media/promedio de 5 numeros
+print("Calculadora de promedio de 5 numeros\n")
 
-num1 = eval(input("Ingresa el primer numero:  ")) #Entrada de datos
+#Entrada de los 5 numeros por parte del usuario
+num1 = eval(input("Ingresa el primer numero:  "))
 num2 = eval(input("Ingresa el segundo numero: "))
 num3 = eval(input("Ingresa el tercer numero: "))
 num4 = eval(input("Ingresa el cuarto numero: "))
-num5 = eval(input("Ingresa el quinto numero; "))
+num5 = eval(input("Ingresa el quinto numero: "))
 
-print("El promedio es:", (num1 + num2 + num3 + num4 + num5) / 5) #Impresion de resultado
+#Calcula e imprime el resultado empleando X = (x1 +...xn)/n
+print("El promedio es:", (num1 + num2 + num3 + num4 + num5) / 5)
