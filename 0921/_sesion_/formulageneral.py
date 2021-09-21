@@ -7,9 +7,9 @@
 
 import math
 
-a = eval(input("Escribe el valor de a: ")
-b = eval(input("Escribe el valor de b: ")
-c = eval(input("Escribe el valor de c: ")
+a = eval(input("Escribe el valor de a: "))
+b = eval(input("Escribe el valor de b: "))
+c = eval(input("Escribe el valor de c: "))
 
 discriminante = b**2 - 4*a*c
 
