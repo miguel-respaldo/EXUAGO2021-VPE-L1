@@ -8,5 +8,7 @@
 frase = "Hola,Mundo,loco"
 
 lista = frase.split(",")
+lista2= frase.split("o")
 
 print(lista)
+print(lista2)
