@@ -7,8 +7,8 @@
 
 
 txt = "Esta es una linea\nesta es otra linea"
-print(txt)
-txt = "Esta es una linea\resta es otra linea jajaja"
-print(txt)
-txt = "Esta es una linea\ttabulador\t"
-print(txt)
+print("1: " + txt)
+txt = "Esta es una linea 1234567890abcdefg\resta es otra linea jajaja"
+print("2: " + txt)
+txt = "Esta es una linea\ttabulador\ttab\ttab"
+print("3: " + txt)
