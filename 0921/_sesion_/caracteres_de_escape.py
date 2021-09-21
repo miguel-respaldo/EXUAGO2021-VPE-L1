@@ -14,7 +14,7 @@ txt = "Esta es una linea\ttabulador\ttab\ttab"
 print("3: " + txt)
 
 
-for i in range(10:-1:-1):
+for i in range(10,-1,-1):
     print(i,end="")
     time.sleep(1)
-    print("   \r")
+    print("   \r",end="")
