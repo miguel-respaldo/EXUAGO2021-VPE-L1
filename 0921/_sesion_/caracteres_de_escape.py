@@ -17,4 +17,4 @@ print("3: " + txt)
 for i in range(10:-1:-1):
     print(i,end="")
     time.sleep(1)
-    print("\r")
+    print("   \r")
