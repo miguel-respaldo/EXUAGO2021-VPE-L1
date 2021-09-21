@@ -10,5 +10,6 @@ frase = "Hola,Mundo,loco"
 lista = frase.split(",")
 lista2= frase.split("o")
 
+print(frase)
 print(lista)
 print(lista2)
