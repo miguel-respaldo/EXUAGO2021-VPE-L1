@@ -23,3 +23,11 @@ print(f1)
 print(f2)
 print(f3)
 
+print("-----------"
+print(lista[0])
+print(lista[1])
+print(lista[2])
+
+print("-----------"
+for f in lista:
+    print(f)
