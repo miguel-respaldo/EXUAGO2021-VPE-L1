@@ -8,3 +8,7 @@
 
 txt = "Esta es una linea\nesta es otra linea"
 print(txt)
+txt = "Esta es una linea\resta es otra linea jajaja"
+print(txt)
+txt = "Esta es una linea\ttabulador\t"
+print(txt)
