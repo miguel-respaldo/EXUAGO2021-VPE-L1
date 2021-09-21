@@ -13,3 +13,13 @@ lista2= frase.split("o")
 print(frase)
 print(lista)
 print(lista2)
+
+
+
+print(len(lista))
+
+f1,f2,f3 = lista
+print(f1)
+print(f2)
+print(f3)
+
