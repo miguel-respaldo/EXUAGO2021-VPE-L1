@@ -12,6 +12,13 @@ txt = "Esta es una linea 1234567890abcdefg\resta es otra linea jajaja"
 print("2: " + txt)
 txt = "Esta es una linea\ttabulador\ttab\ttab"
 print("3: " + txt)
+txt = "012345\b\b\babc"
+print("4: " + txt)
+
+
+
+
+
 
 
 for i in range(10,-1,-1):
