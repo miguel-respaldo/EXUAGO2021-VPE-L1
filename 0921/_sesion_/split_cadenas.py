@@ -31,3 +31,11 @@ print(lista[2])
 print("-----------")
 for f in lista:
     print(f)
+
+print("************")
+
+
+frase = "Hola ja Mundo ja Loco y cruel ja"
+
+print(frase.split(" "))
+print(frase.split("ja"))
