@@ -5,12 +5,14 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-a = 5
-b = 9
+#Se Piden los numeros a evaluar
+num1 = eval(input("Ingresa un numero: "))
+num2 = eval(input("Ingresa otro numero:"))
 
-if a > b:
+#Se valuan las variables
+if num1 > num2:
     print("A es mayor que B" )
-elif a < b:
+elif num1 < num2:
     print("B es mayor que A")
 else:
     print("Son iguales")
