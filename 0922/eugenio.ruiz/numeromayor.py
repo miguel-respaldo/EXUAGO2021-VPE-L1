@@ -11,11 +11,11 @@ print("Ingrese el valor de cada numero para indicar cual es el mayor")
 num1=eval(input("Ingrese el primer numero: ")) 
 num2=eval(input("ingrese el segundo numero: "))
 
-if num1 > num2
+if num1 > num2:             #primer comparacion
     print("El numero mayor es: ",num1)
-elif num1 == num2
+elif num1 == num2:          #segunda comparacion
     print("Los numeros son iguales")
-else:
+else:                       #tercer comparacion
     print("El numero mayor es: ",num2)
 
 
