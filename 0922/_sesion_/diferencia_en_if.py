@@ -24,3 +24,11 @@ elif x > 20:
 else:
     print("Es menor a veinte".upper())
 
+"""
+switch (x) {
+case >10:
+case >20:
+default:
+}
+"""
+
