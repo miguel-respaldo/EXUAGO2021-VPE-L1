@@ -5,12 +5,13 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-a = 5
-b = 9
 
-if a > b:
-    print("A es mayor que B" )
-elif a < b:
-    print("B es mayor que A")
+#Solicitar numero al usuario
+a = int(input("Ingresa un numero: "))
+
+#Codigo que calcula el modulo de cualquier numero
+if a % 2 != 0:
+    print("El numero es impar")
 else:
-    print("Son iguales")
+    print("El numero es par")
+
