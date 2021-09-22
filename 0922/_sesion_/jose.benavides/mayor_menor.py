@@ -5,4 +5,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+a = 5
+b = 9
 
+if a > b:
+    print("A es mayor que B" )
+elif a < b:
+    print("B es mayor que A")
+else:
+    print("Son iguales")
