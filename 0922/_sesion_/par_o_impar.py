@@ -6,3 +6,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Un programa que me detecte si un numero es par o impar
+
+
