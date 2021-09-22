@@ -5,8 +5,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#Se pide al usuario que ingrese un numero
-num = eval(input("Ingresa un numero te dire si es par o inpar:"))
+# Un programa que me detecte si un numero es par o impar
 
-#Se evalua si el numero es par o impar
-print ("\nEs par" if num%2 == 0 else "\nEs Inpar")
+
