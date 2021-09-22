@@ -5,7 +5,4 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-numero = eval(input("Ingresa un número: "))
 
-print("el número que ingresaste fue", numero)
-print(type(numero)) 
