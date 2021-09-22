@@ -5,4 +5,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+A = eval(input("Ingresa el numero correspondiente a A: "))
 
+if A % 2 != 0:
+    print("el numero es impar")
+else:
+    print("El numero es par")
