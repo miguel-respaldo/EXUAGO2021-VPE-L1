@@ -11,6 +11,7 @@ print("Identificacion de par o impar")
 #se solicita el numero 
 num = eval(input("ingresa tu dato"))
 
+#checa el residuo de dividirlo entre 2 y si es 0 es par en otro caso es impar
 if num % 2 == 0:
     print("El numero es par")
 else:
