@@ -5,12 +5,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-a = 5
-b = 9
+A = eval(input("Ingresa el numero correspondiente a A: "))
 
-if a > b:
-    print("A es mayor que B" )
-elif a < b:
-    print("B es mayor que A")
+if A % 2 != 0:
+    print("el numero es impar")
 else:
-    print("Son iguales")
+    print("El numero es par")
