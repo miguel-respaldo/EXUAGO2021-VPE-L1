@@ -4,8 +4,8 @@
 #se presenta el titulo del funcionamineto para saber de que es el codigo
 #despues se genera la entrada de texto con instrucciones
 print("Programa para comparar dos numeros")
-com1 = input("Ingresa tu primer numero: ")
-com2 = input("Ingresa tu segundo numero: ")
+com1 =  eval(input("Ingresa tu primer numero: "))
+com2 = eval(input("Ingresa tu segundo numero: "))
 #revisa si se genera una igualdad
 if com1 == com2:
     print("Los dos numeros son iguales")
