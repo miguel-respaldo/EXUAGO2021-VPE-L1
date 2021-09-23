@@ -5,6 +5,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#  Hacer un programa que pida 2 números y me diga cual es el mayor
+# Un programa que me detecte si un numero es par o impar
 
 

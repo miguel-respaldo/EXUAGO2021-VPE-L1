@@ -5,19 +5,14 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#valores a comparar
+#Programa para comaprar dos valores
 
-x = eval(input("ingrese valor de x: "))
-z = eval(input("ingrese valor de z: "))
+x = eval(input("ingrese valor del número a evaluar: "))
+z = eval(input("ingrese valor del número a evaluar: "))
 
-
-if x > z:
-   	print("x es mayor a z")
-elif x == z:
-        print("x es igual a z")
-else:
-        print("x es menor a z")
-
+if x > z: print("x es mayor que z")
+elif x == z: print("x es igual a z")
+else: print("x es menor a z")
 
 
 
