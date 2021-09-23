@@ -23,6 +23,6 @@ elif mes == 9: print("Septiembre")
 elif mes == 10: print("Octubre")
 elif mes ==11: print("Noviembre")
 elif mes == 12: print("Diciembre")
-
+else: print("Numero invalido")
 
 
