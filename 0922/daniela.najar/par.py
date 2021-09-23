@@ -5,6 +5,20 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#  Hacer un programa que pida 2 números y me diga cual es el mayor
+#Programa para evaluar si un número es par o es impar
+
+num = eval(input("ingrese valor del número a evaluar: "))
+
+
+if num % 2 == 0: print("Su número es par")
+else: print("Su número es impar")
+
+
+
+
+
+
+
+
 
 

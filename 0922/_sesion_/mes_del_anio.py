@@ -5,6 +5,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#  Hacer un programa que pida 2 números y me diga cual es el mayor
-
+# Hacer un programa que yo introduzca el mes en número
+# y me diga el mes en letra
 

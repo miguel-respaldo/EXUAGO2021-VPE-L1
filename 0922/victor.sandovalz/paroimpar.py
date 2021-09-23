@@ -5,6 +5,13 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-#  Hacer un programa que pida 2 números y me diga cual es el mayor
 
+#Solicitar numero al usuario
+a = int(input("Ingresa un numero: "))
+
+#Codigo que calcula el modulo de cualquier numero
+if a % 2 != 0:
+    print("El numero es impar")
+else:
+    print("El numero es par")
 
