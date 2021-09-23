@@ -24,7 +24,8 @@ elif mes == 8: print("Su mes es AGOSTO ")
 elif mes == 9: print("Su mes es SEPTIEMBRE ")
 elif mes == 10: print("Su mes es OCTUBRE ")
 elif mes == 11: print("Su mes es NOVIEMBRE ")
-else: print("Su mes es DICIEMBRE ")
+elif mes == 12: print("Su mes es DICIEMBRE ")
+else: print("Mes invalido")
 
 
 
