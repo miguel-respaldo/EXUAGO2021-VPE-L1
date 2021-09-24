@@ -5,7 +5,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-for x in range(30,2): # for (x=30; x<2; x++)
-    print(x)
+do_while = True
+x = 6
 
-print("Ya acabe")
+while do_while or x < 5:
+    do_while = False
+    print(x)
+    x += 2
+
+
