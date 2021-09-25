@@ -14,6 +14,6 @@ tabla2 = ["1","2","3","4","5","6","7","8","9","10"]
 #se realiza un for para realizar cada multiplicacion
 if num < 11:
     for i in tabla2:
-        print(int(i) * num)
+        print(num, "*", i, "=", int(i) * num)
 else:
     print("numero muy grande")
