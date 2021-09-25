@@ -6,13 +6,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """
 PROGRAMA QUE DETERMINA SI UN NÚMERO ES PAR O IMPAR
+Cesar Alvarado y José Leonardo Quiñonez
 """
 #Captura de numero
 print("Programa que determina si un número es par o impar")
 y = eval(input("Ingresa un número: "))
 
 #Condiciones para determinar si el numero es par o impar
-x = y%2
+x = y % 2
 if x == 0:
     print("El numero :" , y, " es par")
 else:
