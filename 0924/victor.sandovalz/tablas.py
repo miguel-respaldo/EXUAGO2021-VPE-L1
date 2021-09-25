@@ -5,12 +5,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-do_while = True
-x = 6
+tabla = int(input("Ingresa la tabla a imprimir: "))
 
-while do_while or x < 5:
-    do_while = False
-    print(x)
-    x += 2
-
+for x in range(11):
+    result=x*tabla
+    print(x,"x",tabla,"=",result)
 
