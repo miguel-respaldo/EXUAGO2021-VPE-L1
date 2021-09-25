@@ -8,11 +8,12 @@
 PROGRAMA QUE IMPRIME LA TABLA DE MULTIPLICAR SOLICITADA POR EL USUARIO
 """
 
-
+#PIDE AL USUARIO INGRESAR EL NUMERO DE TABLA QUE QUIERE CONSULTAR
 num_tabla = int(input("Ingresa la tabla que deseas visualizar: "))
 
 print("||Tabla del", num_tabla, "||")
 
+#CON EL CICLO FOR SE REALIZA LA MULTIPLICACION DE LOS VALORES Y LOS IMPRIME
 for m in range (1, 11):
     resultado = m * num_tabla
     print(num_tabla,"x", m,"=", resultado)
