@@ -5,12 +5,11 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-do_while = True
-x = 6
 
-while do_while or x < 5:
-    do_while = False
-    print(x)
-    x += 2
+A = eval(input("que tabla quieres? "))
 
 
+for i in range(1,11):
+    x=(A*i)
+    print(A,"por",i,"Ess igual a ",x)
+    i+= 1
