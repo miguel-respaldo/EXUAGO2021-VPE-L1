@@ -32,12 +32,8 @@ while indice_fila<M:
     #Si existe otra fila, procede a repetir el codigo para ingresar sus datos
     indice_fila+=1
 else:
-    #Al momento en que se acaba de recorrer la matriz, se regresa el contador de
-    #filas a 0, para imprimir los resultados
-    indice_fila=0
-    while indice_fila<M:
-        print("Lista {}:".format(indice_fila+1),matriz[indice_fila])
-        indice_fila+=1
+    #Imprime la matriz
+    for x in matriz :
+        print(x)
     #Se muestra mensaje que acabo de imprimir la matriz
-    else:
-        print("Fin del arreglo")
+    print("Fin del arreglo")
