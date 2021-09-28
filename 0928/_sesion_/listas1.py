@@ -16,3 +16,7 @@ print("-----------------")
 
 print("Desde el inicio hasta menor a 5", lista[:5])
 print("Desde el 2 hasta el final", lista[2:])
+
+print("-----------------")
+
+print(lista[-4:-1])
