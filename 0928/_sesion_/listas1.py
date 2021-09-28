@@ -20,3 +20,17 @@ print("Desde el 2 hasta el final", lista[2:])
 print("-----------------")
 
 print(lista[-4:-1])
+print("-----------------")
+
+print("Tiene",len(lista),"elementos")
+print(lista)
+lista.insert(2,"naranja")
+print(lista)
+print("Tiene",len(lista),"elementos")
+lista.insert(10,"sandia")
+print(lista)
+print("Tiene",len(lista),"elementos")
+print(lista[-1])
+print(lista[8])
+
+
