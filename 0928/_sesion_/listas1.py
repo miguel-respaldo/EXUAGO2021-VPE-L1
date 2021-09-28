@@ -10,3 +10,4 @@ lista = ["manzana", "platano", "cereza", "limon", "kiwi", "mango", "melon"]
 otra_lista = lista[2:5]
 
 print(otra_lista)
+print(lista[2:5])
