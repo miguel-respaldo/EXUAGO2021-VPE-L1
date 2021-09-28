@@ -5,14 +5,24 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-lista = ["manzana", "platano", "cereza", "limon", "kiwi", "mango", "melon"]
+lista = ["manzana", "platano", "cereza", "limon", "kiwi", "mango", "melon",
+        "mango", "manzana", "platano"]
 
 print(lista)
-lista.remove("cereza")
+lista.remove("cereza") # el elemnto a quitar
 print(lista)
-lista.pop(1)
+lista.pop(1) # el indice a quitar
 print(lista)
-lista.pop()
+lista.pop() # el último
 print(lista)
 
+if "mango" in lista:
+    lista.remove("mango")
+print(lista)
+
+
+print("Quitamos manzana")
+while "manzana" in lista:
+    lista.remove("manzana")
+print(lista)
 
