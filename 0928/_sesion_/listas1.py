@@ -11,3 +11,8 @@ otra_lista = lista[2:5]
 
 print(otra_lista)
 print(lista[2:5])
+
+print("-----------------")
+
+print("Desde el inicio hasta menor a 5", lista[:5])
+print("Desde el 2 hasta el final", lista[2:])
