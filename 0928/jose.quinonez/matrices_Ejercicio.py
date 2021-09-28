@@ -13,8 +13,10 @@ M = int(input("Ingrese el tamaño M de la matriz: "))
 #Matriz vacia
 Matriz = []
 
-#Se construye la matriz
+#Se construye la matriz de ceros
 for x in range(N):
+    #[0]*M construye un vector de ceros tamaño de M, eso se realizará el número
+    # de veces de N 
     Matriz.append([0]*M)
 #Se empieza a llenar la matriz de NxM
 for x in range(N):
