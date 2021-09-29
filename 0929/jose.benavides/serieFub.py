@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 #fn = fn-1 + fn-2
-
+#Funcion recursiva para la serie de Fibonacci
 def fibo(num):
     if num == 0:
         return 0
@@ -15,8 +15,11 @@ def fibo(num):
     else:
         return fibo(num - 1) + fibo(num - 2)
 
+#Se pide al usuario que ingrese un dato
 n = eval(input("Ingrese un numero y te regresare el elemento correspondiente a la serie de Fibonacci: "))
 
+#Se guarda el retorno de la funcion 
 elemento = fibo(n)
 
+#Se imprime el resultado 
 print(f"El {n} corresponde a {elemento} en la serie de Fibonacci")
