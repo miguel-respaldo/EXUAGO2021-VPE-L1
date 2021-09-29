@@ -5,6 +5,8 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+#Trabajo en equipo serie Alejandro Orozco y Christian Efren Saldivar
+
 #Se inicia la definicio clase de fibonacci
 def fibo(n):
 #Iniciamos las dos primeras posiciones de la serie
