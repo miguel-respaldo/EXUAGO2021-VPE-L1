@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 #Programa que captura los elementos de la matriz con dimension dado por el usuario AxB  
-
+#autores enrique zetina y jesus apodaca
 print ("ingese las dimensienes de la matriz a capturar")
 m = int(input("ingresa cantidad de filas"))
 n = int(input("ingresa cantidad de columnas"))
