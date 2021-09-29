@@ -27,6 +27,7 @@ def fibonacci_iterativo(numero):
             temp1 = 0
         elif(i == 1): # cuando el caso es fibonacci de 1 el resultado es 1
             temp2 = 1
+            resultado = 1
         else: # cuando el caso es fibonacci mayor a 1
             resultado = temp1 + temp2 # el resultado es la suma de los 2 numeros de fibonacci anteriores
             temp1 = temp2 # se desplaza la suma (la ultima se convierte en penultima)
