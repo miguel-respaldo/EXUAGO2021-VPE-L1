@@ -5,7 +5,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 """
-
+Programa que crea matriz de dimensiones y elementos definidos por el usuario
+Jose.Quiñonez
+Cesar.Alvarado
 """
 #Ingreso de datos
 N = int(input("Ingrese el tamaño N de la matriz: "))
@@ -22,4 +24,5 @@ for x in range(N):
 for x in range(N):
     for y in range(M):
         Matriz[x][y] = eval(input("ingresa dato: "))
+#Se imprime matriz al usuario
 print(Matriz)        
