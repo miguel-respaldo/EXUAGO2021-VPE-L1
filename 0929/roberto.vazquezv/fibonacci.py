@@ -14,20 +14,19 @@ def fibonacci(n):
     numf = 0
     
     #Ciclo que obtiene el valor de la posicion dada
-    for x in range(n - 2):  
-        if n == 0: 
-            print("Inexistente")
-        elif n == 1: 
-            break
-        elif n == 2:
-            numf = num1 + num2
-            break
-        else:
+    
+    if n <= 0: 
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    else:
+        for x in range(n - 2):  
             numf = num1 + num2
             num1 = num2
             num2 = numf
-
-    return numf
+        return numf
 
 def main():
     #Entrada del valor de la posicion
