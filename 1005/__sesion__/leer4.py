@@ -6,7 +6,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 f = open("demo.txt")
-print(f.readline())
-print(f.readline())
-print(f.readline())
+print(f.readline(), end="")
+print(f.readline(), end="")
+print(f.readline(), end="")
+
+print("hola", end="---")
+print("mundo", end=" ")
+print("!", end=".")
 
