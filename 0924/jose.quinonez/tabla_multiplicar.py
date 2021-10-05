@@ -9,7 +9,7 @@ PROGRAMA QUE CALCULA UNA TABLA DE MULTIPLICAR
 """
 #PREGUNTAR DE CUAL NUMERO QUIERE LA TABLA DE MULTIPLICAR
 print("Bienvenido al programa que calcula la tabla de multiplicar de un número  dado")
-x = int(input(" Ingresa el numero:"))
+x = int(input(" Ingresa el numero: "))
 
 #CALCULAR E IMPRIMIR LAS TABLA
 for y in range(1,11):
