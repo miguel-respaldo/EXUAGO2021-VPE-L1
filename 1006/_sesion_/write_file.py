@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 f = open("demo2.txt","a")
-f.write("Ahora el archivo tiene mas contenido!")
+f.write("Ahora el archivo tiene mas contenido!\n")
 f.close()
 
 f = open("demo2.txt","r")
