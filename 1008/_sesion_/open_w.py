@@ -5,6 +5,10 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import os
+f = open("demo.txt","w")
+f.write("ups!")
+f.close()
 
-os.rmdir("directorio")
+f = open("demo.txt","r")
+print(f.read())
+f.close()
