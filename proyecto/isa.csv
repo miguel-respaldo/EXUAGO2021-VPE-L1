@@ -1,0 +1,10 @@
+mnemonico,arg1,arg2,arg3,,Significado,,opcode,pos1,pos2,pos3,
+add,rd,rs,rt,,rd=rs+rt,,_0000,rs,rt,rd,_0000
+addi,rt,rs,imm,,rt=rs+c2(imm),,_0001,rs,rt,c2(imm),
+and,,,,,,,,,,,
+andi,,,,,,,,,,,
+beq,,,,,,,,,,,
+bne,,,,,,,,,,,
+j,,,,,,,,,,,
+jal,,,,,,,,,,,
+jr,,,,,,,,,,,
