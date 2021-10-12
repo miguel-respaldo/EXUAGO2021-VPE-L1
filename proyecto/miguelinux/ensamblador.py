@@ -92,7 +92,7 @@ def get_str_line(opcode, arg1, arg2,arg3):
             arg2 = (arg2^0xff + 1) & 0xff
             ret += "{:08b}".format(arg2)
         else:
-            ret += "{:08b}".format(arg3)
+            ret += "{:08b}".format(arg2)
     elif opcode == 12: # or
         ret += "{:04b}".format(opcode)
         ret += "{:03b}".format(arg2)
@@ -107,7 +107,7 @@ def get_str_line(opcode, arg1, arg2,arg3):
             arg2 = (arg2^0xff + 1) & 0xff
             ret += "{:08b}".format(arg2)
         else:
-            ret += "{:08b}".format(arg3)
+            ret += "{:08b}".format(arg2)
     elif opcode == 14: # sll
         ret += "{:04b}".format(opcode)
         ret += "{:03b}".format(arg3)
