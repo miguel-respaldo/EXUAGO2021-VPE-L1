@@ -13,11 +13,21 @@ MNEMONICOS = tuple(("add", "addi", "and", "andi", "beq", "bne", "j", "jal",
 
 OPCODE = tuple((0,1,2,3,4,5,6,7,10,11,12,13,14,15))
 
+REGISTROS = tuple(("x0","x1","x2","x3","x4","x5","x6","x7"))
+
 def get_opcode(mnemonico):
     ret = -1
     for x in range(len(MNEMONICOS)):
         if MNEMONICOS[x] == mnemonico.strip().lower():
             ret = OPCODE[x]
+            break
+    return ret
+
+def get_registro(reg):
+    ret = -1
+    for x in range(len(REGISTROS)):
+        if REGISTROS[x] == reg.strip().lower():
+            ret = x
             break
     return ret
 
