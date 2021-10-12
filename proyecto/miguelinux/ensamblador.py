@@ -15,6 +15,44 @@ import mnemonicos
 GEN_TEXTO=False
 NOMBRE_DE_SALIDA=""
 ARCHIVO_DE_ENTRADA=""
+PC=1
+ETIQUETAS=[]
+DIR_ETIQUETAS=[]
+
+
+def parse_file(archivo):
+
+    global PC
+    global ETIQUETAS
+    global DIR_ETIQUETAS
+
+    file = open(archivo,"r")
+    for linea in file:
+
+        # Quitamos el enter
+        linea = linea.strip()
+
+        # Buscamos etiquetas
+        if ":" in linea:
+            ETIQUETAS.append(linea.split(":")[0].strip())
+            DIR_ETIQUETAS.append(PC)
+            linea = linea.split(":")[1].strip()
+
+        # Separamos por comas
+        lista_linea = linea.split(",")
+
+        # Buscamos mnemonico
+        opcode = mnemonicos.get_opcode(lista_linea[0])
+        if opcode == -1:
+            print("El mnemonico \"",lista_linea[0].strip(),"\" es invalido")
+            file.close()
+            exit(1)
+
+        PC += 1
+        print(lista_linea)
+
+
+
 
 def main():
     """
@@ -40,6 +78,8 @@ def main():
     if not os.path.exists(ARCHIVO_DE_ENTRADA):
         print(f"No se encuentra el archivo {ARCHIVO_DE_ENTRADA}")
         exit(1)
+
+    parse_file(ARCHIVO_DE_ENTRADA)
 
 if __name__ == "__main__":
     main()
