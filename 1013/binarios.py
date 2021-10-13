@@ -7,3 +7,11 @@
 mis_bytes = bytearray(3)
 
 print(mis_bytes)
+
+mis_bytes[0] = 1
+mis_bytes[1] = 2
+mis_bytes[2] = 3
+
+print("-----------")
+print(mis_bytes)
+
