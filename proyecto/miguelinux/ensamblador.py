@@ -17,8 +17,31 @@ PC=1
 ETIQUETAS=[]
 DIR_ETIQUETAS=[]
 
-def get_byte_line(opcode, arg1, arg2,arg3):
-    return bytearray(3)
+def get_byte_line(strbin):
+
+    # Numero de bytes necesario
+    num_bytes = len(strbin) // 8 + 1
+    ret = bytearray(num_bytes)
+
+    for b in range(num_bytes):
+        if b == 0:
+            octeto = strbin[-8:]
+        elif b == num_bytes-1:
+            fin = len(strbin) % 8
+            octeto = strbin[:fin]
+        else:
+            ini=-8*(b+1)
+            fin=-8*b
+            octeto = strbin[ini:fin]
+
+        #invertimos la cadena
+        octeto = octeto[::-1]
+
+        for bit in range(8):
+            if "1" == octecto[bit]:
+                ret[b] |= 1 << bit
+
+    return ret
 
 def get_str_line(opcode, arg1, arg2,arg3):
     ret = ""
@@ -216,12 +239,12 @@ def parse_file(archivo_e, archivo_s, texto):
                 if arg3 == -1:
                     arg3 = eval(lista_linea[x].strip())
             
-        linea_salida = get_str_line(opcode, arg1, arg2,arg3)
+        cadena_binario = get_str_line(opcode, arg1, arg2,arg3)
 
         if texto:
-            linea_salida += "\n"
+            linea_salida = cadena_binario + "\n"
         else:
-            linea_salida = get_byte_line(opcode, arg1, arg2,arg3)
+            linea_salida = get_byte_line(cadena_binario)
         fsalida.write(linea_salida)
         PC += 1
 
