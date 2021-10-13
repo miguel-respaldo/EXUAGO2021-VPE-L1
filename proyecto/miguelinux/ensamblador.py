@@ -37,8 +37,8 @@ def get_byte_line(strbin):
         #invertimos la cadena
         octeto = octeto[::-1]
 
-        for bit in range(8):
-            if "1" == octecto[bit]:
+        for bit in range(len(octeto)):
+            if "1" == octeto[bit]:
                 ret[b] |= 1 << bit
 
     return ret
