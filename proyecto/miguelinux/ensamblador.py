@@ -185,9 +185,11 @@ def parse_file(archivo_e, archivo_s, texto):
         if ":" in linea:
             ETIQUETAS.append(linea.split(":")[0].strip())
             DIR_ETIQUETAS.append(PC)
+        PC += 1
 
     # Regresamos al inicio del archivo
     fentrada.seek(0)
+    PC = 1
 
     for linea in fentrada:
 
