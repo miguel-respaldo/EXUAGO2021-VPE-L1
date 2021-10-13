@@ -5,6 +5,5 @@ addi,x4,x0,-1
 add,x6,x2,x1
 and,x7,x4,x3
 or,x5,x3,x4
-sub,x1,x1,x6
 sll,x3,x3,x1
-slr,x3,x3,x1
+srl,x3,x3,x1
