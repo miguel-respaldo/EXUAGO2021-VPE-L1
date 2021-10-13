@@ -183,13 +183,13 @@ def parse_file(archivo_e, archivo_s, texto):
                 # Buscamos mnemonico
                 opcode = mnemonicos.get_opcode(lista_linea[x])
                 if opcode == -1:
-                    print("El mnemonico \"",lista_linea[0].strip(),"\" es invalido")
+                    mnemonico = lista_linea[0].strip()
+                    print(f"Linea: {PC}: El mnemonico \"{mnemonico}\" es invalido")
                     fentrada.close()
                     fsalida.close()
                     os.remove(archivo_s)
                     exit(1)
 
-                str_opcode = "{:04b}".format(opcode)
             elif x == 1:
                 arg1 = mnemonicos.get_registro(lista_linea[x])
 
@@ -216,8 +216,9 @@ def parse_file(archivo_e, archivo_s, texto):
                 if arg3 == -1:
                     arg3 = eval(lista_linea[x].strip())
             
+        linea_salida = get_str_line(opcode, arg1, arg2,arg3)
+
         if texto:
-            linea_salida = get_str_line(opcode, arg1, arg2,arg3)
             linea_salida += "\n"
         else:
             linea_salida = get_byte_line(opcode, arg1, arg2,arg3)
