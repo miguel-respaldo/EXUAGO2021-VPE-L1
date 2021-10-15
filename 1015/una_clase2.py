@@ -13,11 +13,23 @@ class MiClase:
     def miMetodo(self):
         print("La suma de los numeros es: ", self.num1 + self.__num2)
 
+    def multiplicacion(self):
+        return self.num1 * self.__num2
 
-objeto = MiClase(3.1416, 2.17)
+
+objeto = MiClase(3.1416, 2)
 
 print(objeto.num1)
 ##print(objeto.__num2)
+print("La multiplicacion es:", objeto.multiplicacion())
 
 objeto.miMetodo()
+
+
+#Borrar propiedad
+del objeto.num1
+
+# Borrar Objetos 
+del objeto
+
 
