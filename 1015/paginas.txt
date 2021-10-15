@@ -1,0 +1,2 @@
+https://realpython.com/python-code-quality/
+https://www.wireshark.org/tools/modelines.html
