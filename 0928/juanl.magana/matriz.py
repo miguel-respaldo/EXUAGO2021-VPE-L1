@@ -5,27 +5,29 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 """
-Ejemplo de un modulo
+Funcion principal
 """
-
+#Funcion principal
 def main():
+    """
+    Funcion main
+    """
     #declaracion de variable matriz
-    matriz = [ ]
+    matriz = []
     #Ingreso del tamano de la matriz por parte del usuario
     filas = int(input("Ingrese numero de filas: "))
     columnas = int(input("Ingrese numero de columnas: "))
-    
+
     #creacion de matriz de acuerdo al tamano ingresado
     for i in range(filas):
         matriz.append([0]*columnas)
     #llenado de la matriz con datos ingresados por el usuario
     for i in range(filas):
         for j in range(columnas):
-            matriz[i][j] = int(input(f"Ingrese dato para posicion {i+1},{j+1}: "))
+            matriz[i][j] = int(input(f"Ingrese dato para posicion {i+1},{j+1}:"))
     # impresion de la matriz
     print(matriz)
 
 
 if __name__ == "__main__":
     main()
-
