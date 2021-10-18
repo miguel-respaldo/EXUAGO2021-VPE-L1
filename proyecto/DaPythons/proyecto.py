@@ -102,3 +102,12 @@ reg = {
     "$31" : "11111",
 }
 
+f = 0
+w = 0
+
+if len(sys.argv) == 3:
+    f = open(sys.argv[1], 'r')
+    w = open(sys.argv[2], 'w')
+else:
+    f = open(".\ASSEM4.txt", "r")
+    w = open(".\Fib.txt", 'w')
