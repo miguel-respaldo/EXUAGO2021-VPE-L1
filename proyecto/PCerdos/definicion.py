@@ -10,7 +10,7 @@ Mnemonicos de el ensamblador
 
 MNEMONICOS = tuple(("add","addi","and","andi","beq","bne","j","jal","jr","lb","or","sb","sll","srl"))
 
-OPCODE = tuple((0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15))
+OPCODE = tuple((0,1,2,3,4,5,6,7,10,11,12,13,14,15))
 
 REGISTROS = tuple(("x0","x1","x2","x3","x4","x5","x6","x7"))
 
