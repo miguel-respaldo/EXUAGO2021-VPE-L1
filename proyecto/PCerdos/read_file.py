@@ -7,6 +7,7 @@
 """
 Ejemplo de un modulo
 """
+import argparse
 
 def main():
     
@@ -17,7 +18,7 @@ def main():
     parser.add_argument("-o", "--output", action="store", dest="nombre_salida",
             default="salida.o", help="Nombre de archivo salida")
 
-    args = paser.parse_args()
+    args = parser.parse_args()
 
     print(args.archivo)
     print(args.nombre_de_salida)
