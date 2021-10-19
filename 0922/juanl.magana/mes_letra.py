@@ -7,11 +7,14 @@
 """
 Ejemplo de un modulo
 """
-
+from ast import literal_eval
 def main():
+    """
+    Funcion main para la conversion de numero de mes a nombre del mes
+    """
     #Lectura del numero del mes
-    mes = eval(input("Ingrese el numero del mes\n"))
-    
+    mes = literal_eval(input("Ingrese el numero del mes\n"))
+
     #Impresion en letra del mes
     if mes == 1:
         print("el mes es Enero")
@@ -37,10 +40,9 @@ def main():
         print("el mes es Noviembre")
     elif mes == 12:
         print("el mes es Diciembre")
-    else: print("Error: Introduce un valor entre 1 y 12")
+    #else: print("Error: Introduce un valor entre 1 y 12")
 
 
 
 if __name__ == "__main__":
     main()
-
