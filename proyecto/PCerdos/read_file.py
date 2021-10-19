@@ -25,10 +25,11 @@ def main():
 
     ##print(args.archivo)
     ##print(args.nombre_de_salida)
-    print(args)
-    a = open(args.archivo)
+    #print(args)
+
+    open_file = open(args.archivo)
     
-    for line in a.readlines():
+    for line in open_file.readlines():
     #b = a.readlines()
         line = line.replace("\n", "").replace(" ", "").replace("\t","")
         if(":" in line):
@@ -36,6 +37,8 @@ def main():
         else:
             line = line.split(",")
         print (line) 
+
+
 
 if __name__ == "__main__":
     main()
