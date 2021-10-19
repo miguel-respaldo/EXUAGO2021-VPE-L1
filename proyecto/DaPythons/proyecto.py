@@ -112,7 +112,8 @@ else:
     f = open(".\ASSEM4.txt", "r")
     w = open(".\Fib.txt", 'w')
 
-#comentario de prueba
+
+
 labels = {}
 count = 0
 machines_lines = []
@@ -159,3 +160,4 @@ for line in f:
             and line[pos] not in i_inst_mem.keys() and line[pos] not in i_inst_branch.keys() \
             and line[pos] not in j_inst.keys(): print(line[pos],"Nmonicon no Encontrado")       
     machine_line = ""
+
