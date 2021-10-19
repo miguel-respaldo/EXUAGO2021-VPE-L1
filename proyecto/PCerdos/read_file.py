@@ -9,7 +9,8 @@ Ejemplo de un modulo
 """
 import argparse
 import sys
-from definicion.py import * 
+##from definicion.py import * 
+import definicion
 
 def main():
     
@@ -26,9 +27,15 @@ def main():
     ##print(args.nombre_de_salida)
     print(args)
     a = open(args.archivo)
-    b = a.readlines()
-    print (b)
     
+    for line in a.readlines():
+    #b = a.readlines()
+        line = line.replace("\n", "").replace(" ", "").replace("\t","")
+        if(":" in line):
+            line = line.split(",")[1].split(",")
+        else:
+            line = line.split(",")
+        print (line) 
 
 if __name__ == "__main__":
     main()
