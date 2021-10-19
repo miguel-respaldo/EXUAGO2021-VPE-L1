@@ -111,7 +111,7 @@ if len(sys.argv) == 3:
 else:
     f = open(".\ASSEM4.txt", "r")
     w = open(".\Fib.txt", 'w')
-
+#comentario de prueba de git
 
 
 labels = {}
