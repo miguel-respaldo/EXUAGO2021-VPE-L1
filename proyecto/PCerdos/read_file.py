@@ -68,12 +68,9 @@ def main():
             
             if(line[0] == "add"):
                 f.write(get_opcode(line[0]) + get_registro(line[0]))
-        #print (type(line))
-        #print (len(line))
-        #print(line)
-    #print (MNEMONICOS)
-
-
+        
+        
+        
 
 
 if __name__ == "__main__":
