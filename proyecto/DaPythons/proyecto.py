@@ -113,3 +113,21 @@ else:
     w = open(".\Fib.txt", 'w')
 
 #comentario de prueba
+labels = {}
+count = 0
+machines_lines = []
+offsets = {}
+i=1
+lineapos=0
+brand= []
+for lin in f:
+       
+        linea = lin.lower()
+        linea = linea.replace(',', ' ')
+        linea = linea.replace(':', ' ')
+        linea = linea.split()
+        if(len(linea)==5):
+            offsets[linea[-5]]= i
+        i = i+1
+print(offsets)  
+f.seek(0)
