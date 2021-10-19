@@ -38,6 +38,10 @@ def main():
             line = line.split(",")
         print (line) 
 
+    #etiqueta = definicion.get_opcode()
+   # print(etiqueta)
+
+
 
 
 if __name__ == "__main__":
