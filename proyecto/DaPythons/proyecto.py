@@ -111,4 +111,53 @@ if len(sys.argv) == 3:
 else:
     f = open(".\ASSEM4.txt", "r")
     w = open(".\Fib.txt", 'w')
-    #comentario de prueba de git
+#comentario de prueba de git
+
+
+labels = {}
+count = 0
+machines_lines = []
+offsets = {}
+i=1
+lineapos=0
+brand= []
+for lin in f:
+       
+        linea = lin.lower()
+        linea = linea.replace(',', ' ')
+        linea = linea.replace(':', ' ')
+        linea = linea.split()
+        if(len(linea)==5):
+            offsets[linea[-5]]= i
+        i = i+1
+print(offsets)  
+f.seek(0)
+
+for line in f:
+    lineapos= lineapos+1
+    line = line.lower()
+    #end = line.find('#')
+    #line = line[:end]
+    line = line.replace(',', ' ')
+    line = line.replace(':', ' ')
+    line = line.split()
+
+    
+    if not line:
+        continue
+    if(len(line)>=4):
+        pos=-4
+
+    elif (len(line)==2):
+        pos=-len(line)
+    
+
+    if line[pos] not in r_inst.keys() \
+            and line[pos] not in r_inst_mult.keys() \
+            and line[pos] not in r_inst_move.keys() and line[pos] not in r_inst_shift.keys() \
+            and line[pos] not in r_inst_jr.keys() and line[pos] not in i_inst_signed.keys() \
+            and line[pos] not in i_inst_unsigned.keys() and line[pos] not in i_inst_lui.keys() \
+            and line[pos] not in i_inst_mem.keys() and line[pos] not in i_inst_branch.keys() \
+            and line[pos] not in j_inst.keys(): print(line[pos],"Nmonicon no Encontrado")       
+    machine_line = ""
+
