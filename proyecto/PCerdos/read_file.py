@@ -9,8 +9,8 @@ Ejemplo de un modulo
 """
 import argparse
 import sys
-##from definicion.py import * 
-import definicion
+from definicion import * 
+#import definicion
 
 def main():
     
@@ -38,8 +38,8 @@ def main():
             line = line.split(",")
         print (line) 
 
-    #etiqueta = definicion.get_opcode()
-   # print(etiqueta)
+    etiqueta = get_opcode(ret)
+    print(etiqueta)
 
 
 
