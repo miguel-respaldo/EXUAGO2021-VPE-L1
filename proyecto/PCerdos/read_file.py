@@ -9,8 +9,34 @@ Ejemplo de un modulo
 """
 import argparse
 import sys
-from definicion import * 
+#from definicion import * 
 #import definicion
+
+
+MNEMONICOS = tuple(("add","addi","and","andi","beq","bne","j","jal","jr","lb","or","sb","sll","srl"))
+
+OPCODE = tuple((0000,0001,0010,0011,0100,0101,0110,0111,1010,1011,1100,1101,1110,1111))
+
+REGISTROS_BINARIOS = tuple((000,001,010,011,100,101,110,111))
+REGISTROS = tuple(("x0","x1","x2","x3","x4","x5","x6","x7"))
+def get_opcode(mnemonico):
+    ret = -1
+    for x in range(len(MNEMONICOS)):
+        if MNEMONICOS[x] == mnemonico.strip().lower():
+            ret = OPCODE[x]
+            break
+    return ret
+
+def get_registro(reg):
+    ret = -1
+    for x in range(len(REGISTROS)):
+        if REGISTROS[x] == reg.strip().lower():
+            ret = REGISTROS_BINARIOS[x]
+            break
+    return ret
+
+def get_c2(num):
+    
 
 def main():
     
@@ -33,13 +59,19 @@ def main():
     #b = a.readlines()
         line = line.replace("\t", "").replace(" ", "").replace("\n","")
         if(":" in line):
+            
             line = line.split(":")[1].split(",")
         else:
             line = line.split(",")
-        print (line) 
-
-    etiqueta = get_opcode(ret)
-    print(etiqueta)
+        
+        if(line[0] in MNEMONICOS):
+            
+            if(line[0] == "add"):
+                f.write(get_opcode(line[0]) + get_registro(line[0]))
+        #print (type(line))
+        #print (len(line))
+        #print(line)
+    #print (MNEMONICOS)
 
 
 
