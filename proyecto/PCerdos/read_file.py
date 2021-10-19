@@ -31,9 +31,9 @@ def main():
     
     for line in open_file.readlines():
     #b = a.readlines()
-        line = line.replace("\n", "").replace(" ", "").replace("\t","")
+        line = line.replace("\t", "").replace(" ", "").replace("\n","")
         if(":" in line):
-            line = line.split(",")[1].split(",")
+            line = line.split(":")[1].split(",")
         else:
             line = line.split(",")
         print (line) 
