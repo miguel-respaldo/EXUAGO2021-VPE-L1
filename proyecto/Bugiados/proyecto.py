@@ -15,7 +15,11 @@ import sys
 
 
 def main():
-    lista = []
+    opcode = ['0000','0001','0010','0011','0100','0101','0110']
+            #add    #addi   #and    #andi #beq  #bne    #j
+    opcode2= ['0111','1010','1011','1100','1101','1110','1111']
+            #jal    #jr     #lb     #or     #sb #sll    #srl
+    maquina = []
     #imprime el contenido de un archivo que entro como argumento
     parser = argparse.ArgumentParser()
     #metodo add_argument es usado pa especificar cuales opc de
@@ -36,36 +40,114 @@ def main():
 
     content = args.Archivin #gaurdamos el arg en content
     with open(content) as txt1:
-        lines = txt1.readlines())
-    k = 1
+        lines = txt1.readlines()
+    k = 0
+    print(lines)
     print("-------------DEBUG--------------")
+    
     print("///Para separar esas listas en mas listas")
     print("y acceder a sus elementos")
-    #print("cadena original:\n",lines[0].rstrip())
+    print("cadena original:\n",lines[0].rstrip())
     for i in lines:
         lista1_1 = lines[k].split(",")
-        print(lista1_1)
+       
+        #print(lista1_1[k])
         if "add" in lista1_1:
-            print(k)
-            print("llamando a add")
-            add(lista1_1)
+            #sublist = lista1_1.split(",")            
+            #print(lista1_1[0]) #me imprime el mnemonico
+            print(lista1_1[1])
+            print(lista1_1[2])
+            print(lista1_1[3])
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[0])
+            machin.close()
+        if "addi" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[1])
+            #machin.write("\n")
+            machin.close()
+        if "and" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[2])
+            machin.close()
+        if "andi" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[3])
+            machin.close()  
+        if "beq" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[4])
+            machin.close() 
+        if "bne" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[5])
+            machin.close() 
+        if "j" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode[6])
+            machin.close() 
+        if "jal" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[0])
+            machin.close() 
+        if "jr" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[1])
+            machin.close()       
+        if "lb" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[2])
+            machin.close()   
+        if "or" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[3])
+            machin.close()      
+        if "sb" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[4])
+            machin.close()      
+        if "sll" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[5])
+            machin.close()      
+        if "srl" in lista1_1:
+            machin = open("cod1.txt","a")
+            machin.write("\n")
+            machin.write(opcode2[6])
+            machin.close()      
+        
         k += 1
     
     print("--------------------------------")
 
-def add(liston):
-    print("hola soy add veo que esta lista tiene")
-    print(liston[0],liston[1],liston[2],liston[3])
-    print("vamos a jugar un rato con esto")
-    print("ya que tenemos",liston[0],"opcode sera")
-    opcode = (0,0,0,0) #tupla
-    print(opcode)
-    print(type(opcode))
-    
-def kesk(kosa):
 
-
-
+"""
+#next f performs a bdecimal to binary convertion
+def tobin(num):
+    binary = 0
+    multip = 1
+    #first a full division is required 
+    while num != 0:  #se ejecuta hasta que no halla cociente
+        binary = binary + num % 2 * multip
+        num = num // 2
+        multip = multip * 10
+        #ref1
+        print(type(binary))
+    return binary
+"""
 
 if __name__ == "__main__":
     main()
