@@ -102,6 +102,23 @@ reg = {
     "$31" : "11111",
 }
 
+def regOrConst(valor):
+        machine_lin = ""
+        if valor  in reg.keys():
+            machine_lin += reg[valor].zfill(8)  # zeros a la izq
+        elif valor not in reg.keys():
+            if valor.isdecimal():
+                bina = "{:8b}".format(int((valor),10)).strip().zfill(8)
+                machine_lin += (bina)
+            else:  #si  no es registro (reg) ni numero ,sera dato hexadecimal y convertiremos a bin
+                if int((valor),16) >= 0:
+                    bina = "{:8b}".format(int((valor),16)).strip().zfill(8) # zeros a la izq
+                    machine_lin += (bina)
+                else:
+                    bina = bin((eval("0b"+str(int(bin(int(valor))[3:].zfill(8).replace("0","2").replace("1","0").replace("2","1"))))+eval("0b1")))[2:].zfill(8)
+                    machine_lin += bina
+        return  machine_lin
+
 f = 0
 w = 0
 
@@ -166,4 +183,11 @@ for line in f:
         machine_line += reg[line[-2]] #rs
         machine_line += reg[line[-1]] #rt
         machine_line += reg[line[-3]].ljust(8,"0") #rd   0 a la derecha
+        print(machine_line)
+
+    elif line[pos] in i_inst_signed.keys(): 
+        machine_line += i_inst_signed[line[pos]] 
+        machine_line += reg[line[-2]]
+        machine_line += reg[line[-3]]
+        machine_line += regOrConst(line[-1])      
         print(machine_line)
