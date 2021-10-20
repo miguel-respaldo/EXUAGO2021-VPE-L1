@@ -161,3 +161,9 @@ for line in f:
             and line[pos] not in j_inst.keys(): print(line[pos],"Nmonicon no Encontrado")       
     machine_line = ""
 
+    if line[pos] in r_inst.keys():
+        machine_line += r_inst[line[pos]] #opcode
+        machine_line += reg[line[-2]] #rs
+        machine_line += reg[line[-1]] #rt
+        machine_line += reg[line[-3]].ljust(8,"0") #rd   0 a la derecha
+        print(machine_line)
