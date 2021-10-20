@@ -13,18 +13,86 @@ def add(rd, rs, rt):
     rd = rd[1:2]
     rs = rs[1:2]
     rt = rt[1:2]
-    a = decimal_a_binario(rd)
-    b = decimal_a_binario(rs)
-    c = decimal_a_binario(rt)
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
     while len(a) != 3: 
         a.insert(0,0)
     while len(b) != 3:
         b.insert(0,0)
     while len(c) != 3:
         c.insert(0,0)
-    arg = "0000" + a[0] + a[1] + a[2] + a[0] +
+    arg = "0000" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[0]) + str(c[1])
+    arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
     write_down("salida.txt", arg)
     
+def and(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "0010" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[0]) + str(c[1])
+    arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+    
+def or(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "1100" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[0]) + str(c[1])
+    arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+    
+def sll(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "1100" + str(c[0]) + str(c[1]) + str(c[2]) + str(b[0]) + str(b[0]) + str(b[1])
+    arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+ 
+def sll(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "1111" + str(c[0]) + str(c[1]) + str(c[2]) + str(b[0]) + str(b[0]) + str(b[1])
+    arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
     
 ## Copiar desde aquí, AQUÍIIII
 
@@ -104,7 +172,7 @@ def main():
     addi("x4","x0","-1")
     #print(decimal_a_binario(1))
     print("--------------------")
-    add("x1", "x2", "x3")
+    add("x6", "x2", "x1")
     
     
     #print(len(decimal_a_binario(2)))
