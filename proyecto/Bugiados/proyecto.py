@@ -36,7 +36,7 @@ def main():
 
     content = args.Archivin #gaurdamos el arg en content
     with open(content) as txt1:
-        lines = txt1.readlines())
+        lines = txt1.readlines()
     k = 1
     print("-------------DEBUG--------------")
     print("///Para separar esas listas en mas listas")

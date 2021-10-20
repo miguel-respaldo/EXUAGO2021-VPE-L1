@@ -9,6 +9,27 @@
 """
 Ejemplo de un modulo
 """
+def add(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(rd)
+    b = decimal_a_binario(rs)
+    c = decimal_a_binario(rt)
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "0000" + a[0] + a[1] + a[2] + a[0] +
+    write_down("salida.txt", arg)
+    
+    
+## Copiar desde aquí, AQUÍIIII
+
+import ast
+
 def addi(rt,rs,imm): 
     rs = rs[1:2]
     rt = rt[1:2]
@@ -22,7 +43,6 @@ def addi(rt,rs,imm):
     arg = arg + str(b[0]) + str(b[1]) + str(b[2])
     imm1 = imm[0:2]
     if imm1 == "0x": 
-        import ast
         s = ast.literal_eval(imm)
         s = decimal_a_binario(int(s))
         while len(s) != 8:
@@ -36,9 +56,16 @@ def addi(rt,rs,imm):
             s = decimal_a_binario(int(imm1))
             while len(s) != 8: 
                 s.insert(0, 1)
+        else:
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 1)
     arg = arg + str(s[0]) + str(s[1]) + str(s[2]) + str(s[3])
     arg = arg + str(s[4]) + str(s[5]) + str(s[6]) + str(s[7]) + "\n"
     write_down("salida.txt", arg)
+    
+
+
 
 def decimal_a_binario(num_dec):
     modulos = []
@@ -55,15 +82,18 @@ def decimal_a_binario(num_dec):
     else:
         modulos.insert(0,0)
         return modulos
-def convert_m_i(a):
-    for i in range(len(a)):
-        a[i] = int(a[i])
-    return a[i]
+        
+        
+   #ESTE ES MI MODO DE IMPRIMIR
+   
 def write_down(filename, arg):
     print(arg)
     f = open ('salida.txt', 'a')
     f.write(arg)
     f.close()
+    
+    ##HASTA ACÁ    
+
 def main():
     """
     Comentario de la función
@@ -72,7 +102,9 @@ def main():
     """
     addi("x2","x0","0x02")
     addi("x4","x0","-1")
-    print(decimal_a_binario(1))
+    #print(decimal_a_binario(1))
+    print("--------------------")
+    add("x1", "x2", "x3")
     
     
     #print(len(decimal_a_binario(2)))
