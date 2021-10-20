@@ -14,10 +14,10 @@ import sys
 
 
 MNEMONICOS = tuple(("add","addi","and","andi","beq","bne","j","jal","jr","lb","or","sb","sll","srl"))
-OPCODE = tuple((0000,0001,0010,0011,0100,0101,0110,0111,1010,1011,1100,1101,1110,1111))
+OPCODE = tuple(("0000","0001","0010","0011","0100","0101","0110","0111","1010","1011","1100","1101","1110","1111"))
 
 REGISTROS = tuple(("x0","x1","x2","x3","x4","x5","x6","x7"))
-REGISTROS_BINARIOS = tuple((000,001,010,011,100,101,110,111))
+REGISTROS_BINARIOS = tuple(("000","001","010","011","100","101","110","111"))
 
 def get_opcode(mnemonico):
     ret = -1
@@ -27,19 +27,33 @@ def get_opcode(mnemonico):
             break
     return ret
 
-def get_registro(reg):
+def get_registro(reg, bits = 3):
     ret = -1
-    for x in range(len(REGISTROS)):
-        if REGISTROS[x] == reg.strip().lower():
-            ret = REGISTROS_BINARIOS[x]
-            break
-    return ret
+    if "0x" in reg:
+        return  bin(int(reg.split("0x")[1], 16) )[2:].zfill(bits)
+    elif "x" in reg:
+        for x in range(len(REGISTROS)):
+            if REGISTROS[x] == reg.strip().lower():
+                ret = REGISTROS_BINARIOS[x]
+        return ret.zfill(bits)
+    elif "-" in reg:
+        return bin(int(reg) % (1 << bits ))[2:]
+    else:
+        return bin(int(reg))[2:].zfill(bits)
 
-def get_c2(num,bits):
-    if ("-" in num):
-        return bin(int(num) % (1 << bits ))[2:]
+def offset(tag, count, bits, txt, flag = 0):
+    i = 1
 
-    
+    file = open(txt,"r")
+
+    for line in file.readlines():
+        if tag in line and count != i:
+            if flag:
+                return get_registro(str(i-count), bits)
+            else:
+                return get_registro(str(i), bits)
+        i += 1
+
 
 def main():
     
@@ -52,12 +66,14 @@ def main():
 
     args = parser.parse_args()
 
-    ##print(args.archivo)
-    ##print(args.nombre_de_salida)
-    #print(args)
+    print(args.archivo)
+    print(args.nombre_de_salida)
+    print(args)
 
     open_file = open(args.archivo)
-    
+    f = open(args.nombre_de_salida,"w") 
+    j = 1
+
     for line in open_file.readlines():
     #b = a.readlines()
         line = line.replace("\t", "").replace(" ", "").replace("\n","")
@@ -70,53 +86,50 @@ def main():
         if(line[0] in MNEMONICOS):
             
             if(line[0] == "add"):#revisar pos4
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1], 8) + "\n" )
             
             elif(line[0] == "addi"):
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[1]) + get_registro(line[3]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[1]) + get_registro(line[3], 8)  + "\n" )
             
             elif(line[0] == "and"):#revisar pos4
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1], 8)  + "\n" )
             
             elif(line[0] == "andi"):
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[1]) + get_registro(line[3]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[1]) + get_registro(line[3], 8)  + "\n" )
             
             elif(line[0] == "beq"):
-                ##agregar for para offset
-                f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[2]) + get_registro(line[3]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[2]) + offset(line[3], j, 8, args.archivo, 1) + "\n" )
             
             elif(line[0] == "bne"):
-                ##agregar for para offset
-                f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[2]) + get_registro(line[3]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[2]) + offset(line[3], j, 8, args.archivo,  1) + "\n" )
             
             elif(line[0] == "j"):
-                ##agregar for para tarjet
-                f.write(get_opcode(line[0]) )
+                f.write(get_opcode(line[0]) + offset(line[1], j, 14, args.archivo) + "\n" )
             
             elif(line[0] == "jal"):
-                ##agregar for para tarjet
-                f.write(get_opcode(line[0]) )
+                f.write(get_opcode(line[0]) + offset(line[1], j, 14, args.archivo) + "\n" )
             
-            elif(line[0] == "jr"):##revisar
-                f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[0]) +get_c2(8) + \n )
+            elif(line[0] == "jr"):
+                f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro("0", 11) + "\n" )
             
-            elif(line[0] == "lb"):##revisar lleva offset en posicion 2
-                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[1]) + get_registro(line[2]) + get_c2(8) + \n )
+            elif(line[0] == "lb"):
+                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[1]) + get_registro(line[2], 8) + "\n" )
             
-            elif(line[0] == "or"):#revisar pos4
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1]) + get_c2(8) + \n )
+            elif(line[0] == "or"):
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1], 8) + "\n" )
             
-            elif(line[0] == "sb"):##revisar lleva offset en posicion 2
-                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[1]) + get_registro(line[2]) + get_c2(8) + \n )
+            elif(line[0] == "sb"):
+                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[1]) + get_registro(line[2], 8) + "\n" )
             
             elif(line[0] == "sll"):
-                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1], 8) + "\n" )
             
             elif(line[0] == "srl"):
-                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1]) + get_c2(8) + \n )
+                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1], 8) + "\n" )
+        j =+ 1
+    f.close() 
+    open_file.close()        
 
-        
-        
         
 
 if __name__ == "__main__":
