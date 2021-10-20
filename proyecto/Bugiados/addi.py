@@ -20,6 +20,11 @@ def addi(rt,rs,imm):
     if len(a) == 2: 
         a.insert(0,0)
     print("0001",a[2],a[1],a[0])
+    arg = "0001"+ str(a[2]) + str(a[1]) + str(a[0])
+    print(arg)
+    f = open ('salida.txt', 'w')
+    f.write(arg)
+    f.close()
 
 def decimal_a_binario(num_dec):
     modulos = []
@@ -43,8 +48,9 @@ def main():
     
     print("Hola Mundo")
     """
-    addi("x2",0,0)
-    print(decimal_a_binario(2))
+    addi("x5",0,0)
+    #print(decimal_a_binario(2))
+    
     #print(len(decimal_a_binario(2)))
 if __name__ == "__main__":
     main()
