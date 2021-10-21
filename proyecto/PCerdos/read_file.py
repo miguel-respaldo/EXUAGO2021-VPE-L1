@@ -36,7 +36,7 @@ def get_registro(reg, bits = 3):
             if REGISTROS[x] == reg.strip().lower():
                 ret = REGISTROS_BINARIOS[x]
         return ret.zfill(bits)
-    elif "-" in reg:
+    elif ("-" in reg) :
         return bin(int(reg) % (1 << bits ))[2:]
     else:
         return bin(int(reg))[2:].zfill(bits)
@@ -45,12 +45,17 @@ def offset(tag, count, bits, txt, flag = 0):
     i = 1
 
     file = open(txt,"r")
-
+    ## print(tag)
     for line in file.readlines():
+       ## print(line)
         if tag in line and count != i:
+            
             if flag:
+               ## print(i-count)
+               ## print(count)
                 return get_registro(str(i-count), bits)
             else:
+               ## print(i)
                 return get_registro(str(i), bits)
         i += 1
 
@@ -86,23 +91,25 @@ def main():
         if(line[0] in MNEMONICOS):
             
             if(line[0] == "add"):#revisar pos4
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1], 8) + "\n" )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1]) + get_registro("0", 5)  + "\n" )
             
             elif(line[0] == "addi"):
                 f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[1]) + get_registro(line[3], 8)  + "\n" )
             
             elif(line[0] == "and"):#revisar pos4
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1], 8)  + "\n" )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1]) + get_registro("0", 5)  + "\n" )
             
             elif(line[0] == "andi"):
                 f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[1]) + get_registro(line[3], 8)  + "\n" )
             
             elif(line[0] == "beq"):
                 f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[2]) + offset(line[3], j, 8, args.archivo, 1) + "\n" )
-            
+                ## print(offset(line[3], j, 8, args.archivo, 1)) 
+    
             elif(line[0] == "bne"):
                 f.write(get_opcode(line[0]) + get_registro(line[1]) + get_registro(line[2]) + offset(line[3], j, 8, args.archivo,  1) + "\n" )
-            
+                ## print(offset(line[3], j, 8, args.archivo, 1))
+
             elif(line[0] == "j"):
                 f.write(get_opcode(line[0]) + offset(line[1], j, 14, args.archivo) + "\n" )
             
@@ -116,17 +123,17 @@ def main():
                 f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[1]) + get_registro(line[2], 8) + "\n" )
             
             elif(line[0] == "or"):
-                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1], 8) + "\n" )
+                f.write(get_opcode(line[0]) + get_registro(line[2]) + get_registro(line[3]) + get_registro(line[1]) + get_registro("0", 5) + "\n" )
             
             elif(line[0] == "sb"):
                 f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[1]) + get_registro(line[2], 8) + "\n" )
             
             elif(line[0] == "sll"):
-                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1], 8) + "\n" )
+                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1]) + get_registro("0", 5)  + "\n" )
             
             elif(line[0] == "srl"):
-                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1], 8) + "\n" )
-        j =+ 1
+                f.write(get_opcode(line[0]) + get_registro(line[3]) + get_registro(line[2]) + get_registro(line[1]) + get_registro("0", 5)  + "\n" )
+        j += 1
     f.close() 
     open_file.close()        
 
