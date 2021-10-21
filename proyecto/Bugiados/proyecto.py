@@ -14,6 +14,7 @@ import sys
 import ast
 
 
+
 def main():
     #imprime el contenido de un archivo que entro como argumento
     parser = argparse.ArgumentParser()
@@ -37,22 +38,85 @@ def main():
     with open(content) as txt1:
         lines = txt1.readlines()
     k = 0
-    print("--------------DEBUG VISUAL HELP--------------")
-    print(lines)
+    print("--------------DEBUG VISUAL HELP--------------")#debug
+    print("Lista original")#debug
+    print(lines)#debug
+    print()#debug
+    print("///Para separar esa lista en mas listas")#debug
+    print("y acceder a sus elementos")#debug
+    print("cadena original:\n",lines[0].rstrip())#debug
+    print()#debug
     
-    print("///Para separar esas listas en mas listas")
-    print("y acceder a sus elementos")
-    print("cadena original:\n",lines[0].rstrip())
+    predato=[]
+    print("-----------------------------------")#debug
+    print("prelista antes de eliminar labels")#debug
+    #El sig for asigna valor a labels y las elimina de la lista
     for i in lines:
-        dato = lines[k].split(",")
-       
-        #print(lista1_1[k])
+        predato.append(lines[k].split(":"))#save in predato every: 
+        print(predato[k])#debug lista antes de quitar labels
+        print("p", k)
+        if "MAIN" in predato[k]:
+            MAIN = k+1
+            print("MAIN was here, se guardo su valor")#debug
+            print("y se elimino su indice")#debug
+            predato[k].remove("MAIN")
+        if "INC" in predato[k]:
+            INC = k+1
+            print("INC was here, se guardo su valor")#debug
+            print("y se elimino su indice")#debug
+            predato[k].remove("INC")         
+        if "DEC" in predato[k]:
+            DEC = k+1
+            print("DEC was here, se guardo su valor")#debug
+            print("y se elimino su indice")#debug
+            predato[k].remove("DEC")
+        if "EXIT" in predato[k]:
+            EXIT = k+1
+            print("EXIT was here, se guardo su valor")#debug
+            print("y se elimino su indice")#debug
+            predato[k].remove("EXIT")
+        if "FUNC" in predato[k]:
+            FUNC = k+1
+            print("FUNC was here, se guardo su valor")#debug
+            print("y se elimino su indice")#debug
+            predato[k].remove("FUNC")
+
+        k+=1
+    print("----------------------")#debug
+    print("la prelista despues de eliminar labels:")#debug
+    print(predato)#debug
+    print("----------------------")#debug
+    
+    print("El valor de main es :")#debug
+    print(MAIN)#debug
+    print("El valor de inc es :")#debug
+    print(INC)#debug
+    print("El valor de dec es :")#debug
+    print(DEC)#debug
+    print("El valor de exit es :")#debug
+    print(EXIT)#debug
+
+#/////////////////Corregir la nueva lista\\\\\\\\\\\\\\\\\\\
+    k=0#reinicio contador
+    #Ahora predato sera mi nueva lista
+    mistring = ','.join(predato)
+    print("-------")
+    print(mistring)
+    print("-------")
+    for i in predato:
+        dato = predato[k].split(",")
+        #print("puras labels")#debug
+        print(dato)
+        #dato = dato[0] + lines[k].split(",")#debug
+        #print("ya con ,")#debug
+        #print(dato)#debug
         if "add" in dato:
             add(dato[1],dato[2],dato[3])
             print("---ADD_PARAMETERS---")
             print(dato[1],dato[2],dato[3])
             print("--------END ADD------")
         if "addi" in dato:
+
             addi(dato[1],dato[2],dato[3])
         if "and" in dato:
             andF(dato[1],dato[2],dato[3])
@@ -62,11 +126,11 @@ def main():
         if "andi" in dato:
             continue
         if "beq" in dato:
-            continue
+            print("beq: EXIT label at the end gen. a bug")
         if "bne" in dato:
-            continue
-        if "j" in dato:
-            continue
+            print("bne: INC label at the end gen. a bug")
+        if "j" in dato: 
+            print("j: DEC label at the end gen. a bug")
         if "jal" in dato:
             continue
         if "jr" in dato:
@@ -239,5 +303,11 @@ def write_down(filename, arg):
     f.close()
 
 #ending moy's implementation
+
+    
+
+
+
+
 if __name__ == "__main__":
     main()
