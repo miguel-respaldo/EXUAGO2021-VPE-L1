@@ -11,15 +11,10 @@ PROYECTO    PROYECTO    PROYECTO
 '''
 import argparse
 import sys
-
+import ast
 
 
 def main():
-    opcode = ['0000','0001','0010','0011','0100','0101','0110']
-            #add    #addi   #and    #andi #beq  #bne    #j
-    opcode2= ['0111','1010','1011','1100','1101','1110','1111']
-            #jal    #jr     #lb     #or     #sb #sll    #srl
-    maquina = []
     #imprime el contenido de un archivo que entro como argumento
     parser = argparse.ArgumentParser()
     #metodo add_argument es usado pa especificar cuales opc de
@@ -42,112 +37,207 @@ def main():
     with open(content) as txt1:
         lines = txt1.readlines()
     k = 0
+    print("--------------DEBUG VISUAL HELP--------------")
     print(lines)
-    print("-------------DEBUG--------------")
     
     print("///Para separar esas listas en mas listas")
     print("y acceder a sus elementos")
     print("cadena original:\n",lines[0].rstrip())
     for i in lines:
-        lista1_1 = lines[k].split(",")
+        dato = lines[k].split(",")
        
         #print(lista1_1[k])
-        if "add" in lista1_1:
-            #sublist = lista1_1.split(",")            
-            #print(lista1_1[0]) #me imprime el mnemonico
-            print(lista1_1[1])
-            print(lista1_1[2])
-            print(lista1_1[3])
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[0])
-            machin.close()
-        if "addi" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[1])
-            #machin.write("\n")
-            machin.close()
-        if "and" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[2])
-            machin.close()
-        if "andi" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[3])
-            machin.close()  
-        if "beq" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[4])
-            machin.close() 
-        if "bne" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[5])
-            machin.close() 
-        if "j" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode[6])
-            machin.close() 
-        if "jal" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[0])
-            machin.close() 
-        if "jr" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[1])
-            machin.close()       
-        if "lb" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[2])
-            machin.close()   
-        if "or" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[3])
-            machin.close()      
-        if "sb" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[4])
-            machin.close()      
-        if "sll" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[5])
-            machin.close()      
-        if "srl" in lista1_1:
-            machin = open("cod1.txt","a")
-            machin.write("\n")
-            machin.write(opcode2[6])
-            machin.close()      
+        if "add" in dato:
+            add(dato[1],dato[2],dato[3])
+            print("---ADD_PARAMETERS---")
+            print(dato[1],dato[2],dato[3])
+            print("--------END ADD------")
+        if "addi" in dato:
+            addi(dato[1],dato[2],dato[3])
+        if "and" in dato:
+            andF(dato[1],dato[2],dato[3])
+            print("----AND_PARAMETERS----")
+            print(dato[1],dato[2],dato[3])
+            print("--------END And------")
+        if "andi" in dato:
+            continue
+        if "beq" in dato:
+            continue
+        if "bne" in dato:
+            continue
+        if "j" in dato:
+            continue
+        if "jal" in dato:
+            continue
+        if "jr" in dato:
+            continue
+        if "lb" in dato:
+            continue
+        if "or" in dato:
+            orF(dato[1],dato[2],dato[3])
+        if "sb" in dato:
+            continue
+        if "sll" in dato:
+            sll(dato[1],dato[2],dato[3])
+        if "sb" in dato:
+            continue
+        if "srl" in dato:
+            srl(dato[1],dato[2],dato[3])
         
         k += 1
     
-    print("--------------------------------")
+    print("------Main Function Succesfully executed---------")
 
 
-"""
-#next f performs a bdecimal to binary convertion
-def tobin(num):
-    binary = 0
-    multip = 1
-    #first a full division is required 
-    while num != 0:  #se ejecuta hasta que no halla cociente
-        binary = binary + num % 2 * multip
-        num = num // 2
-        multip = multip * 10
-        #ref1
-        print(type(binary))
-    return binary
-"""
+#moy's implementation
 
+def add(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "0000" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[1]) + str(c[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+    
+def andF(rd,rs,rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "0010" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[1]) + str(c[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+    
+def orF(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "1100" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[1]) + str(c[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+    
+def sll(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "1110" + str(c[0]) + str(c[1]) + str(c[2]) + str(b[0]) + str(b[1]) + str(b[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+ 
+def srl(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    while len(c) != 3:
+        c.insert(0,0)
+    arg = "1111" + str(c[0]) + str(c[1]) + str(c[2]) + str(b[0]) + str(b[1]) + str(b[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
+    write_down("salida.txt", arg)
+
+def addi(rt,rs,imm): #[xn,xn,c]
+    rs = rs[1:2] #[x1]
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rs))
+    b = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    arg = "0001" + str(a[0]) + str(a[1]) + str(a[2])
+    arg = arg + str(b[0]) + str(b[1]) + str(b[2])
+    imm1 = imm[0:2]
+    if imm1 == "0x": 
+        s = ast.literal_eval(imm) #?
+        s = decimal_a_binario(int(s))
+        while len(s) != 8:
+            s.insert(0,0)
+    else: 
+        imm1 = imm[0:1]
+        print(imm1)
+        if imm1 == "-":
+            imm1 = imm[1:2]
+            print(imm1)
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 1)
+        else:
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 0)
+    arg = arg + str(s[0]) + str(s[1]) + str(s[2]) + str(s[3])
+    arg = arg + str(s[4]) + str(s[5]) + str(s[6]) + str(s[7]) + "\n"
+    write_down("salida.txt", arg)
+    
+
+
+
+def decimal_a_binario(num_dec):
+    modulos = []
+    num_bin = 0
+    multiplicador = 1
+    if num_dec != 0:
+        while num_dec != 0:
+            # num_bin = num_bin + num_dec % 2 * multiplicador
+            #num_dec //= 2
+            #multiplicador *= 10
+            modulos.insert(0,num_dec % 2)
+            num_dec //= 2
+        return modulos
+    else:
+        modulos.insert(0,0)
+        return modulos
+        
+        
+   #ESTE ES MI MODO DE IMPRIMIR
+   
+def write_down(filename, arg):
+    print(arg)
+    f = open ('salida.txt', 'a')
+    f.write(arg)
+    f.close()
+
+#ending moy's implementation
 if __name__ == "__main__":
     main()
