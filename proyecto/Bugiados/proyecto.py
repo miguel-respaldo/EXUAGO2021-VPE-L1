@@ -12,8 +12,6 @@ PROYECTO    PROYECTO    PROYECTO
 import argparse
 import sys
 
-
-
 def main():
     lista = []
     #imprime el contenido de un archivo que entro como argumento
