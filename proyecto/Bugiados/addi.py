@@ -26,7 +26,7 @@ def add(rd, rs, rt):
     arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
     write_down("salida.txt", arg)
     
-def and(rd, rs, rt):
+def and1(rd, rs, rt):
     rd = rd[1:2]
     rs = rs[1:2]
     rt = rt[1:2]
@@ -43,7 +43,7 @@ def and(rd, rs, rt):
     arg = arg + str(a[2]) + str(a[0]) + str(a[2]) + "00000\n"
     write_down("salida.txt", arg)
     
-def or(rd, rs, rt):
+def or1(rd, rs, rt):
     rd = rd[1:2]
     rs = rs[1:2]
     rt = rt[1:2]
@@ -151,7 +151,23 @@ def decimal_a_binario(num_dec):
         modulos.insert(0,0)
         return modulos
         
-        
+def dec_a_bin(num_dec):
+    #modulos = []
+    num_bin = 0
+    multiplicador = 1
+    if num_dec != 0:
+        while num_dec != 0:
+            num_bin = num_bin + num_dec % 2 * multiplicador
+            num_dec //= 2
+            multiplicador *= 10
+            #modulos.insert(0,num_dec % 2)
+            #num_dec //= 2
+        return num_bin
+    else:
+        #modulos.insert(0,0)
+        return num_bin
+
+
    #ESTE ES MI MODO DE IMPRIMIR
    
 def write_down(filename, arg):
@@ -162,18 +178,56 @@ def write_down(filename, arg):
     
     ##HASTA ACÁ    
 
+def bne(rd, rs, rt):
+    rd = rd[1:2]
+    rs = rs[1:2]
+    #rt = rt[1:2]
+    a = decimal_a_binario(int(rd))
+    b = decimal_a_binario(int(rs))
+    c = dec_a_bin(int(rt))
+    d = ~c-1
+    print(d)
+    c = int(str(c),2)
+    p = 0xFF
+    e = bin(int(rt))
+    #c = str(c[0]) + str(c[1]) + str(c[2])
+    #c = int(int(c),2)
+    c = format(c, '08b')
+    c1 = format(p, '08b')
+    c2 = bin(int(c,2) + int(c,2))
+
+    print(c)
+    print(c1)
+    print(c2)
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    #while len(c) != 3:
+    #    c.insert(0,0)
+    arg = "0101" + str(a[2]) + str(a[0]) + str(a[2]) 
+    arg = arg + str(b[0]) + str(b[0]) + str(b[1]) 
+    arg = arg + " " + str(c) + "\n"
+    write_down("salida.txt", arg)
+    
+
+
+
+
 def main():
     """
     Comentario de la función
     
     print("Hola Mundo")
-    """
+   
     addi("x2","x0","0x02")
     addi("x4","x0","-1")
     #print(decimal_a_binario(1))
     print("--------------------")
     add("x6", "x2", "x1")
-    
+    """
+    bne("x1", "x2", "4")
+     
     
     #print(len(decimal_a_binario(2)))
 if __name__ == "__main__":
