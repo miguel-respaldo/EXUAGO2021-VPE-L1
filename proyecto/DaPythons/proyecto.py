@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 import sys
 
-
+#diccionarios de nemonicos
 r_inst = { #inst $d,$s,$t
     "add" : "0000",
     "sub" : "000001",
@@ -168,7 +168,8 @@ for line in f:
     elif (len(line)==2):
         pos=-len(line)
     
-
+#busca que todos los nemonicos(Opcode) se encuentren en nuestro diccionario,
+#si no encuentra alguno manda error
     if line[pos] not in r_inst.keys() \
             and line[pos] not in r_inst_mult.keys() \
             and line[pos] not in r_inst_move.keys() and line[pos] not in r_inst_shift.keys() \
@@ -178,32 +179,36 @@ for line in f:
             and line[pos] not in j_inst.keys(): print(line[pos],"Nmonicon no Encontrado")       
     machine_line = ""
 
+#nemonicos aritmeticos
     if line[pos] in r_inst.keys():
         machine_line += r_inst[line[pos]] #opcode
         machine_line += reg[line[-2]] #rs
         machine_line += reg[line[-1]] #rt
         machine_line += reg[line[-3]].ljust(8,"0") #rd   0 a la derecha
         print(machine_line)
-
+#condicional para busqueda de nemonicos aritmeticos con signo
     elif line[pos] in i_inst_signed.keys(): 
         machine_line += i_inst_signed[line[pos]] 
         machine_line += reg[line[-2]]
         machine_line += reg[line[-3]]
         machine_line += regOrConst(line[-1])      
         print(machine_line)
-
+#condicional para busquedad de nemonicos de desplazamiento slr, sll
     elif line[pos] in r_inst_shift.keys():
         machine_line += r_inst_shift[line[pos]]
         machine_line += reg[line[-1]]
         machine_line += reg[line[-2]]
         machine_line += reg[line[-3]].ljust(8,"0")
         print(machine_line)
+#condicional para busqueda de nemonicos de memoria
     elif line[pos] in i_inst_mem.keys():
         machine_line += i_inst_mem[line[pos]] 
         machine_line += reg[line[-1]] #rs
         machine_line += reg[line[-3]] #rt
         machine_line += regOrConst(line[-2]) #offset 
         print(machine_line)
+        #condicional para busqueda de nemonicos de salto condicional beq, bne,
+        #etc
     elif line[pos] in i_inst_branch.keys():
         machine_line += i_inst_branch[line[pos]] 
         machine_line += reg[line[-3]] #rs
@@ -220,16 +225,17 @@ for line in f:
                 bina = formatStr.format(int(BranAddr))
                 machine_line += str(bina) 
         print(machine_line)
+        #condicional para busqueda de nemonicos de salto tipo j
     elif line[pos] in j_inst.keys():
         machine_line += j_inst[line[pos]] 
         if line[-1] in offsets.keys():
             bina = "{:8b}".format(int(str(offsets[line[-1]]),10)).strip().zfill(14)
             machine_line += bina #offset 
         print(machine_line)
-
+#condicional para busqueda de nemonicos de salto tipo jr
     elif line[pos] in r_inst_jr.keys():
         machine_line += r_inst_jr[line[pos]] 
         machine_line += reg[line[-1]].ljust(14,"0")#reg 
         print(machine_line)
-       
+    #Escribe los cambios en el archivo .bim   
     w.writelines(machine_line + '\n')  
