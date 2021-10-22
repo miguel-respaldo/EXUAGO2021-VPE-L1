@@ -7,18 +7,19 @@
 """
 Ejemplo de un modulo
 """
-
+from ast import literal_eval
 def main():
-    #Lectura del numero 
-    a=eval(input("Ingrese numero "))
+    """
+    Funcion para calcular numero par o impar
+    """
+    #Lectura del numero
+    numero_1 = literal_eval(input("Ingrese numero "))
     #Condicional que arroja si es numero par e impar
-    if a%2==0:
+    if numero_1 % 2 == 0:
         print("El numero es par")
     else:
         print("El numero es impar")
-    
 
 
 if __name__ == "__main__":
     main()
-

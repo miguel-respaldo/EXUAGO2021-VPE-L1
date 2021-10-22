@@ -7,22 +7,21 @@
 """
 Ejemplo de un modulo
 """
-
+from ast import literal_eval
 def main():
     """
     Comentario de la función
     """
-    suma=0 #Se inicializa variable suma 
+    suma = 0 #Se inicializa variable suma
     print("Calculador de promedio de 5 numeros")#Se muestra al usuario el
     #proposito del programa
     for i in range(5):#Ciclo for para realizar la suma de los enteros
     #ingresados por el usario
-        suma+=eval(input(f"Ingrese numero entero # {i+1}\n"))#Se imprime y se
+        suma += literal_eval(input(f"Ingrese numero entero # {i+1}\n"))#Se imprime y se
        #recibe el numero ingresado por el usuario
-    promedio=suma/5#Se finaliza el for y se obtiene el promedio
-    print("El promedio es ",promedio)#Se obtiene el promedio
+    promedio = suma/5#Se finaliza el for y se obtiene el promedio
+    print("El promedio es ", promedio)#Se obtiene el promedio
 
 
 if __name__ == "__main__":
     main()
-
