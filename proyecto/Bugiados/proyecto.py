@@ -7,155 +7,107 @@
 '''
 Team Bugiados by AlvaradoCesar&PerezMoises
 MIPS Architecture Operations
-PROYECTO    PROYECTO    PROYECTO
 '''
 import argparse
-import sys
 import ast
 
-
-
 def main():
-    #imprime el contenido de un archivo que entro como argumento
+    """
+    Se utiliza argparse para aceptar argumentos
+    desde linea de comandos, en este caso se 
+    recibe el nombre del archivo de entrada
+    como segundo argumento
+    """
     parser = argparse.ArgumentParser()
-    #metodo add_argument es usado pa especificar cuales opc de
-    #commandline el programa esta dispuesto a ejecutar
-    #el siguiente parametro acepta un .txt de entrada
     parser.add_argument("Archivin", help="Ingrese su nombredearchivo.txt")
-    #el sig parametro le genera un archivin de txt
     parser.add_argument("-t","--text",action="store_true",
             dest="gen_text", default=False, help="Generar tu txt")
-    #el sig argumento es para tunear el name de tu txt de salida
     parser.add_argument("-o","--output",action="store",dest="nombre_de_salida",
             default="salida.o",help="Name del archivo de salida")
-    
-    #metodo parse_args retorna datos con opciones especificadas
-    #se guarda el retorno en args
+    global args
     args = parser.parse_args()
-
-
     content = args.Archivin #gaurdamos el arg en content
     with open(content) as txt1:
         lines = txt1.readlines()
     k = 0
-    print("--------------DEBUG VISUAL HELP--------------")#debug
-    print("Lista original")#debug
-    print(lines)#debug
-    print()#debug
-    print("///Para separar esa lista en mas listas")#debug
-    print("y acceder a sus elementos")#debug
-    print("cadena original:\n",lines[0].rstrip())#debug
-    print()#debug
-    
     predato=[]
-    print("-----------------------------------")#debug
-    print("prelista antes de eliminar labels")#debug
     #El sig for asigna valor a labels y las elimina de la lista
     for i in lines:
         predato.append(lines[k].split(":"))#save in predato every: 
-        print(predato[k])#debug lista antes de quitar labels
-        print("p", k)
         if "MAIN" in predato[k]:
+            global MAIN
             MAIN = k+1
-            print("MAIN was here, se guardo su valor")#debug
-            print("y se elimino su indice")#debug
             predato[k].remove("MAIN")
         if "INC" in predato[k]:
+            global INC 
             INC = k+1
-            print("INC was here, se guardo su valor")#debug
-            print("y se elimino su indice")#debug
             predato[k].remove("INC")         
         if "DEC" in predato[k]:
+            global DEC
             DEC = k+1
-            print("DEC was here, se guardo su valor")#debug
-            print("y se elimino su indice")#debug
             predato[k].remove("DEC")
         if "EXIT" in predato[k]:
+            global EXIT
             EXIT = k+1
-            print("EXIT was here, se guardo su valor")#debug
-            print("y se elimino su indice")#debug
             predato[k].remove("EXIT")
         if "FUNC" in predato[k]:
+            global FUNC
             FUNC = k+1
-            print("FUNC was here, se guardo su valor")#debug
-            print("y se elimino su indice")#debug
             predato[k].remove("FUNC")
-
         k+=1
-    print("----------------------")#debug
-    print("la prelista despues de eliminar labels:")#debug
-    print(predato)#debug
-    print("----------------------")#debug
     
-    print("El valor de main es :")#debug
-    print(MAIN)#debug
-    print("El valor de inc es :")#debug
-    print(INC)#debug
-    print("El valor de dec es :")#debug
-    print(DEC)#debug
-    print("El valor de exit es :")#debug
-    print(EXIT)#debug
-
-#/////////////////Corregir la nueva lista\\\\\\\\\\\\\\\\\\\
-    k=0#reinicio contador
-    #Ahora predato sera mi nueva lista
-    mistring = ','.join(predato)
-    print("-------")
-    print(mistring)
-    print("-------")
-    for i in predato:
-        dato = predato[k].split(",")
-        #print("puras labels")#debug
-        print(dato)
-        #dato = dato[0] + lines[k].split(",")#debug
-        #print("ya con ,")#debug
-        #print(dato)#debug
+    """
+    Debido a que quitar las etiquetas nos creo una lista con listas
+    se inplementa un for para quitarlas
+    """
+    k=0
+    plana = []
+    for item in predato:
+        plana += item
+    
+    """
+    Iteracion en la lista principal, separamos por ,
+    se identifica el mnemonico y se aplica la funcion correspondiente
+    pasando a ella los argumentos necesarios
+    """
+    for i in plana:
+        dato = plana[k].split(",")
         if "add" in dato:
             add(dato[1],dato[2],dato[3])
-            print("---ADD_PARAMETERS---")
-            print(dato[1],dato[2],dato[3])
-            print("--------END ADD------")
         if "addi" in dato:
-
             addi(dato[1],dato[2],dato[3])
         if "and" in dato:
             andF(dato[1],dato[2],dato[3])
-            print("----AND_PARAMETERS----")
-            print(dato[1],dato[2],dato[3])
-            print("--------END And------")
-        if "andi" in dato:
-            continue
         if "beq" in dato:
-            print("beq: EXIT label at the end gen. a bug")
+            beq(dato[1],dato[2],dato[3])
         if "bne" in dato:
-            print("bne: INC label at the end gen. a bug")
+            bne(dato[1],dato[2],dato[3])
         if "j" in dato: 
-            print("j: DEC label at the end gen. a bug")
+            j(dato[1])
         if "jal" in dato:
-            continue
+            jal(dato[1])
         if "jr" in dato:
-            continue
+            jr(dato[1])
         if "lb" in dato:
-            continue
+            lb(dato[1],dato[2],dato[3])
         if "or" in dato:
             orF(dato[1],dato[2],dato[3])
         if "sb" in dato:
-            continue
+            sb(dato[1],dato[2],dato[3])
         if "sll" in dato:
             sll(dato[1],dato[2],dato[3])
-        if "sb" in dato:
-            continue
         if "srl" in dato:
-            srl(dato[1],dato[2],dato[3])
-        
-        k += 1
-    
+            srl(dato[1],dato[2],dato[3])  
+        k += 1 
     print("------Main Function Succesfully executed---------")
 
-
-#moy's implementation
-
+#Inicio de funciones
 def add(rd, rs, rt):
+    """
+    Se identifica el valor numerico
+    de los argumentos para convertirlos
+    a binario y rellenarlos con los while
+    """
     rd = rd[1:2]
     rs = rs[1:2]
     rt = rt[1:2]
@@ -168,10 +120,20 @@ def add(rd, rs, rt):
         b.insert(0,0)
     while len(c) != 3:
         c.insert(0,0)
+    
+    #Acomodo del registro de bits
     arg = "0000" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[1]) + str(c[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
-    write_down("salida.txt", arg)
-    
+    #Escritura en archivo de salida correspondiente
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
 def andF(rd,rs,rt):
     rd = rd[1:2]
     rs = rs[1:2]
@@ -185,10 +147,17 @@ def andF(rd,rs,rt):
         b.insert(0,0)
     while len(c) != 3:
         c.insert(0,0)
-    arg = "0010" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[1]) + str(c[2])
+    arg = "0010" + str(b[0])+str(b[1])+str(b[2])+str(c[0])+str(c[1])+str(c[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
-    write_down("salida.txt", arg)
-    
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
 def orF(rd, rs, rt):
     rd = rd[1:2]
     rs = rs[1:2]
@@ -202,10 +171,17 @@ def orF(rd, rs, rt):
         b.insert(0,0)
     while len(c) != 3:
         c.insert(0,0)
-    arg = "1100" + str(b[0]) + str(b[1]) + str(b[2]) + str(c[0]) + str(c[1]) + str(c[2])
+    arg = "1100" + str(b[0])+str(b[1])+str(b[2])+str(c[0])+str(c[1])+str(c[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
-    write_down("salida.txt", arg)
-    
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+   
 def sll(rd, rs, rt):
     rd = rd[1:2]
     rs = rs[1:2]
@@ -219,10 +195,17 @@ def sll(rd, rs, rt):
         b.insert(0,0)
     while len(c) != 3:
         c.insert(0,0)
-    arg = "1110" + str(c[0]) + str(c[1]) + str(c[2]) + str(b[0]) + str(b[1]) + str(b[2])
+    arg = "1110" + str(c[0])+str(c[1])+str(c[2])+str(b[0])+str(b[1])+str(b[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
-    write_down("salida.txt", arg)
- 
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)  
+
 def srl(rd, rs, rt):
     rd = rd[1:2]
     rs = rs[1:2]
@@ -236,12 +219,19 @@ def srl(rd, rs, rt):
         b.insert(0,0)
     while len(c) != 3:
         c.insert(0,0)
-    arg = "1111" + str(c[0]) + str(c[1]) + str(c[2]) + str(b[0]) + str(b[1]) + str(b[2])
+    arg = "1111" + str(c[0])+str(c[1])+str(c[2])+str(b[0])+str(b[1])+str(b[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2]) + "00000\n"
-    write_down("salida.txt", arg)
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)  
 
-def addi(rt,rs,imm): #[xn,xn,c]
-    rs = rs[1:2] #[x1]
+def addi(rt,rs,imm):
+    rs = rs[1:2] 
     rt = rt[1:2]
     a = decimal_a_binario(int(rs))
     b = decimal_a_binario(int(rt))
@@ -250,6 +240,231 @@ def addi(rt,rs,imm): #[xn,xn,c]
     while len(b) != 3:
         b.insert(0,0)
     arg = "0001" + str(a[0]) + str(a[1]) + str(a[2])
+    arg = arg + str(b[0]) + str(b[1]) + str(b[2])
+    """
+    En caso de que argumento imm sea
+    un numero la siguiente estructura 
+    lo formatea a binario si viene dado como
+    caso 1 0xn, caso 2 -n y caso 3 n
+    """
+    imm1 = imm[0:2]
+    if imm1 == "0x": 
+        s = ast.literal_eval(imm)
+        s = decimal_a_binario(int(s))
+        while len(s) != 8:
+            s.insert(0,0)
+    else: 
+        imm1 = imm[0:1]
+        print(imm1)
+        if imm1 == "-":
+            imm1 = imm[1:2]
+            print(imm1)
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 1)
+        else:
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 0)
+
+    arg = arg + str(s[0]) + str(s[1]) + str(s[2]) + str(s[3])
+    arg = arg + str(s[4]) + str(s[5]) + str(s[6]) + str(s[7]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
+def bne(rt,rs,imm): 
+    rs = rs[1:2] 
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rs))
+    b = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    arg = "0101" + str(b[0]) + str(b[1]) + str(b[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2])
+    imm1 = imm
+    if imm1 == "MAIN\n":
+        l = decimal_a_binario(MAIN)
+        while len(l) != 8:
+            l.insert(0,0) 
+    if imm1 == "INC\n":
+        l = decimal_a_binario(INC)
+        while len(l) != 8:
+            l.insert(0,1)
+    if imm1 == "DEC\n":
+        l = decimal_a_binario(DEC)
+        while len(l) != 8:
+            l.insert(0,0) 
+    if imm1 == "EXIT\n":
+        l = decimal_a_binario(EXIT)
+        while len(l) != 8:
+            l.insert(0,0) 
+    if imm1 == "FUNC\n":
+        l = decimal_a_binario(FUNC)
+        while len(l) != 8:
+            l.insert(0,0) 
+    arg = arg + str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
+    arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
+def beq(rt,rs,imm):
+    rs = rs[1:2] 
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rs))
+    b = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    arg = "0100" + str(b[0]) + str(b[1]) + str(b[2])
+    arg = arg + str(a[0]) + str(a[1]) + str(a[2])
+    imm1 = imm
+    if imm1 == "MAIN\n":
+        l = decimal_a_binario(MAIN)
+        while len(l) != 8:
+            l.insert(0,0) 
+    if imm1 == "INC\n":
+        l = decimal_a_binario(INC)
+        while len(l) != 8:
+            l.insert(0,0)
+    if imm1 == "DEC\n":
+        l = decimal_a_binario(DEC)
+        while len(l) != 8:
+            l.insert(0,0) 
+    if imm1 == "EXIT\n":
+        l = decimal_a_binario(EXIT)
+        while len(l) != 8:
+            l.insert(0,0) 
+    if imm1 == "FUNC\n":
+        l = decimal_a_binario(FUNC)
+        while len(l) != 8:
+            l.insert(0,0) 
+    arg = arg + str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
+    arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
+def j(imm): 
+    arg = "0110" 
+    imm1 = imm
+    if imm1 == "MAIN\n":
+        l = decimal_a_binario(MAIN)
+        while len(l) != 14:
+            l.insert(0,0) 
+    if imm1 == "INC\n":
+        l = decimal_a_binario(INC)
+        while len(l) != 14:
+            l.insert(0,0)
+    if imm1 == "DEC\n":
+        l = decimal_a_binario(DEC)
+        while len(l) != 14:
+            l.insert(0,0) 
+    if imm1 == "EXIT\n":
+        l = decimal_a_binario(EXIT)
+        while len(l) != 14:
+            l.insert(0,0) 
+    if imm1 == "FUNC\n":
+        l = decimal_a_binario(FUNC)
+        while len(l) != 14:
+            l.insert(0,0) 
+    arg = arg +str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
+    arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) 
+    arg = arg + str(l[8]) + str(l[9]) + str(l[10]) + str(l[11])
+    arg = arg + str(l[12])+ str(l[13]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
+def jal(imm):
+    arg = "0111" 
+    imm1 = imm
+    if imm1 == "MAIN\n":
+        l = decimal_a_binario(MAIN)
+        while len(l) != 14:
+            l.insert(0,0) 
+    if imm1 == "INC\n":
+        l = decimal_a_binario(INC)
+        while len(l) != 14:
+            l.insert(0,0)
+    if imm1 == "DEC\n":
+        l = decimal_a_binario(DEC)
+        while len(l) != 14:
+            l.insert(0,0) 
+    if imm1 == "EXIT\n":
+        l = decimal_a_binario(EXIT)
+        while len(l) != 14:
+            l.insert(0,0) 
+    if imm1 == "FUNC\n":
+        l = decimal_a_binario(FUNC)
+        while len(l) != 14:
+            l.insert(0,0) 
+    arg = arg +str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
+    arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) 
+    arg = arg + str(l[8]) + str(l[9]) + str(l[10]) + str(l[11])
+    arg = arg + str(l[12])+ str(l[13]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
+def jr(imm):
+    arg = "1010" 
+    imm  = imm[1:2]
+    l = decimal_a_binario(int(imm))
+    while len(l) != 14:
+        l.append(0)
+    arg = arg +str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
+    arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) 
+    arg = arg + str(l[8]) + str(l[9]) + str(l[10]) + str(l[11])
+    arg = arg + str(l[12])+ str(l[13]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
+
+def sb(rt,imm,rs): 
+    rs = rs[1:2] 
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rs))
+    b = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    arg = "1101" + str(a[0]) + str(a[1]) + str(a[2])
     arg = arg + str(b[0]) + str(b[1]) + str(b[2])
     imm1 = imm[0:2]
     if imm1 == "0x": 
@@ -272,42 +487,83 @@ def addi(rt,rs,imm): #[xn,xn,c]
                 s.insert(0, 0)
     arg = arg + str(s[0]) + str(s[1]) + str(s[2]) + str(s[3])
     arg = arg + str(s[4]) + str(s[5]) + str(s[6]) + str(s[7]) + "\n"
-    write_down("salida.txt", arg)
-    
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
 
+def lb(rt,imm,rs): 
+    rs = rs[1:2] 
+    rt = rt[1:2]
+    a = decimal_a_binario(int(rs))
+    b = decimal_a_binario(int(rt))
+    while len(a) != 3: 
+        a.insert(0,0)
+    while len(b) != 3:
+        b.insert(0,0)
+    arg = "1011" + str(a[0]) + str(a[1]) + str(a[2])
+    arg = arg + str(b[0]) + str(b[1]) + str(b[2])
+    imm1 = imm[0:2]
+    if imm1 == "0x": 
+        s = ast.literal_eval(imm) #?
+        s = decimal_a_binario(int(s))
+        while len(s) != 8:
+            s.insert(0,0)
+    else: 
+        imm1 = imm[0:1]
+        print(imm1)
+        if imm1 == "-":
+            imm1 = imm[1:2]
+            print(imm1)
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 1)
+        else:
+            s = decimal_a_binario(int(imm1))
+            while len(s) != 8: 
+                s.insert(0, 0)
+    arg = arg + str(s[0]) + str(s[1]) + str(s[2]) + str(s[3])
+    arg = arg + str(s[4]) + str(s[5]) + str(s[6]) + str(s[7]) + "\n"
+    if args.Archivin == "codigo1.txt":
+        write_down("salida1.txt", arg)
+    elif args.Archivin == "codigo2.txt":
+        write_down("salida2.txt", arg)
+    elif args.Archivin == "codigo3.txt":
+        write_down("salida3.txt", arg)
+    else:
+        write_down("salida4.txt",arg)
 
-
+        
+#Funcion para convertir numeros decimales a binarios
 def decimal_a_binario(num_dec):
     modulos = []
     num_bin = 0
     multiplicador = 1
     if num_dec != 0:
         while num_dec != 0:
-            # num_bin = num_bin + num_dec % 2 * multiplicador
-            #num_dec //= 2
-            #multiplicador *= 10
             modulos.insert(0,num_dec % 2)
             num_dec //= 2
         return modulos
     else:
         modulos.insert(0,0)
         return modulos
-        
-        
-   #ESTE ES MI MODO DE IMPRIMIR
-   
+#Funcion para escribir archivos
 def write_down(filename, arg):
     print(arg)
-    f = open ('salida.txt', 'a')
+    if args.Archivin == "codigo1.txt":
+        f = open('salida1.txt', 'a')
+    elif args.Archivin == "codigo2.txt":
+        f = open('salida2.txt', 'a')
+    elif args.Archivin == "codigo3.txt":
+        f = open('salida3.txt', 'a')
+    else:
+        f = open('salida4.txt', 'a')   
     f.write(arg)
     f.close()
-
-#ending moy's implementation
-
-    
-
-
-
 
 if __name__ == "__main__":
     main()
