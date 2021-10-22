@@ -204,4 +204,19 @@ for line in f:
         machine_line += reg[line[-3]] #rt
         machine_line += regOrConst(line[-2]) #offset 
         print(machine_line)
-
+    elif line[pos] in i_inst_branch.keys():
+        machine_line += i_inst_branch[line[pos]] 
+        machine_line += reg[line[-3]] #rs
+        machine_line += reg[line[-2]] #rt
+        if line[-1] in offsets.keys():
+            BranAddr = offsets[line[-1]] -lineapos
+            brand.append(BranAddr)
+            if (BranAddr >0):
+                bina = bin(BranAddr)[2:]
+                machine_line += bina.strip().zfill(8) 
+            else:
+                BranAddr &= (2 << 8-1)-1
+                formatStr = '{:0'+str(8)+'b}'
+                bina = formatStr.format(int(BranAddr))
+                machine_line += str(bina) 
+        print(machine_line)
