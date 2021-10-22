@@ -241,24 +241,48 @@ def bne(rt,rs,imm):
     writefunc(arg)
     
 def binCon(imm1, val):
-    if imm1 == "MAIN\n":
-        l = decimal_a_binario(MAIN)
-        addvalues(l, val, 0)
-    if imm1 == "INC\n":
-        l = decimal_a_binario(INC)
-        addvalues(l, val, 0)
-        if (k1 > INC):
+    if val == 8:
+        if imm1 == "MAIN\n":
+            l = decimal_a_binario(MAIN)
             addvalues(l, val, 0)
-            l = compl2(l)
-    if imm1 == "DEC\n":
-        l = decimal_a_binario(DEC)
-        addvalues(l, val, 0)
-    if imm1 == "EXIT\n":
-        l = decimal_a_binario(EXIT)
-        addvalues(l, val, 0)
-    if imm1 == "FUNC\n":
-        l = decimal_a_binario(FUNC)
-        addvalues(l, val, 0)
+            if (k1 > MAIN):
+                l = compl2(l)
+        if imm1 == "INC\n":
+            l = decimal_a_binario(INC)
+            addvalues(l, val, 0)
+            if (k1 > INC):
+                l = compl2(l)
+        if imm1 == "DEC\n":
+            l = decimal_a_binario(DEC)
+            addvalues(l, val, 0)
+            if (k1 > DEC):
+                l = compl2(l)
+        if imm1 == "EXIT\n":
+            l = decimal_a_binario(EXIT)
+            addvalues(l, val, 0)
+            if (k1 > EXIT):
+                l = compl2(l)
+        if imm1 == "FUNC\n":
+            l = decimal_a_binario(FUNC)
+            addvalues(l, val, 0)
+            if (k1 > FUNC):
+                l = compl2(l)
+    else:    
+        if imm1 == "MAIN\n":
+            l = decimal_a_binario(MAIN)
+            addvalues(l, val, 0)
+        if imm1 == "INC\n":
+            l = decimal_a_binario(INC)
+            l = addvalues(l, val, 0)
+        if imm1 == "DEC\n":
+            l = decimal_a_binario(DEC)
+            addvalues(l, val, 0)
+        if imm1 == "EXIT\n":
+            l = decimal_a_binario(EXIT)
+            addvalues(l, val, 0)
+        if imm1 == "FUNC\n":
+            l = decimal_a_binario(FUNC)
+            addvalues(l, val, 0)
     return l
             
 def beq(rt,rs,imm):
