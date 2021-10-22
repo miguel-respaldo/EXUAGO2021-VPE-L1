@@ -191,3 +191,10 @@ for line in f:
         machine_line += reg[line[-3]]
         machine_line += regOrConst(line[-1])      
         print(machine_line)
+
+    elif line[pos] in r_inst_shift.keys():
+        machine_line += r_inst_shift[line[pos]]
+        machine_line += reg[line[-1]]
+        machine_line += reg[line[-2]]
+        machine_line += reg[line[-3]].ljust(8,"0")
+        print(machine_line)
