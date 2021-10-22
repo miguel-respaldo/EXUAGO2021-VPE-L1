@@ -25,11 +25,13 @@ def main():
     parser.add_argument("-o","--output",action="store",dest="nombre_de_salida",
             default="salida.o",help="Name del archivo de salida")
     global args
+    global k1
     args = parser.parse_args()
     content = args.Archivin #gaurdamos el arg en content
     with open(content) as txt1:
         lines = txt1.readlines()
     k = 0
+    k1 = 1
     predato=[]
     #El sig for asigna valor a labels y las elimina de la lista
     for i in lines:
@@ -55,7 +57,7 @@ def main():
             FUNC = k+1
             predato[k].remove("FUNC")
         k+=1
-    
+        
     """
     Debido a que quitar las etiquetas nos creo una lista con listas
     se inplementa un for para quitarlas
@@ -98,7 +100,8 @@ def main():
             sll(dato[1],dato[2],dato[3])
         if "srl" in dato:
             srl(dato[1],dato[2],dato[3])  
-        k += 1 
+        k += 1
+        k1+=1 
     print("------Main Function Succesfully executed---------")
 """
 Inicio de funciones para identificar los nemonicos 
@@ -232,30 +235,32 @@ def bne(rt,rs,imm):
     arg = "0101" + str(b[0]) + str(b[1]) + str(b[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2])
     imm1 = imm
-    if imm1 == "MAIN\n":
-        l = decimal_a_binario(MAIN)
-        while len(l) != 8:
-            l.insert(0,0) 
-    if imm1 == "INC\n":
-        l = decimal_a_binario(INC)
-        while len(l) != 8:
-            l.insert(0,1)
-    if imm1 == "DEC\n":
-        l = decimal_a_binario(DEC)
-        while len(l) != 8:
-            l.insert(0,0) 
-    if imm1 == "EXIT\n":
-        l = decimal_a_binario(EXIT)
-        while len(l) != 8:
-            l.insert(0,0) 
-    if imm1 == "FUNC\n":
-        l = decimal_a_binario(FUNC)
-        while len(l) != 8:
-            l.insert(0,0) 
+    l = binCon(imm1, 8)
     arg = arg + str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
     arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) + "\n"
     writefunc(arg)
-
+    
+def binCon(imm1, val):
+    if imm1 == "MAIN\n":
+        l = decimal_a_binario(MAIN)
+        addvalues(l, val, 0)
+    if imm1 == "INC\n":
+        l = decimal_a_binario(INC)
+        addvalues(l, val, 0)
+        if (k1 > INC):
+            addvalues(l, val, 0)
+            l = compl2(l)
+    if imm1 == "DEC\n":
+        l = decimal_a_binario(DEC)
+        addvalues(l, val, 0)
+    if imm1 == "EXIT\n":
+        l = decimal_a_binario(EXIT)
+        addvalues(l, val, 0)
+    if imm1 == "FUNC\n":
+        l = decimal_a_binario(FUNC)
+        addvalues(l, val, 0)
+    return l
+            
 def beq(rt,rs,imm):
     rs = rs[1:2] 
     rt = rt[1:2]
@@ -266,26 +271,7 @@ def beq(rt,rs,imm):
     arg = "0100" + str(b[0]) + str(b[1]) + str(b[2])
     arg = arg + str(a[0]) + str(a[1]) + str(a[2])
     imm1 = imm
-    if imm1 == "MAIN\n":
-        l = decimal_a_binario(MAIN)
-        while len(l) != 8:
-            l.insert(0,0) 
-    if imm1 == "INC\n":
-        l = decimal_a_binario(INC)
-        while len(l) != 8:
-            l.insert(0,0)
-    if imm1 == "DEC\n":
-        l = decimal_a_binario(DEC)
-        while len(l) != 8:
-            l.insert(0,0) 
-    if imm1 == "EXIT\n":
-        l = decimal_a_binario(EXIT)
-        while len(l) != 8:
-            l.insert(0,0) 
-    if imm1 == "FUNC\n":
-        l = decimal_a_binario(FUNC)
-        while len(l) != 8:
-            l.insert(0,0) 
+    l = binCon(imm1, 8) 
     arg = arg + str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
     arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) + "\n"
     writefunc(arg)
@@ -293,26 +279,7 @@ def beq(rt,rs,imm):
 def j(imm): 
     arg = "0110" 
     imm1 = imm
-    if imm1 == "MAIN\n":
-        l = decimal_a_binario(MAIN)
-        while len(l) != 14:
-            l.insert(0,0) 
-    if imm1 == "INC\n":
-        l = decimal_a_binario(INC)
-        while len(l) != 14:
-            l.insert(0,0)
-    if imm1 == "DEC\n":
-        l = decimal_a_binario(DEC)
-        while len(l) != 14:
-            l.insert(0,0) 
-    if imm1 == "EXIT\n":
-        l = decimal_a_binario(EXIT)
-        while len(l) != 14:
-            l.insert(0,0) 
-    if imm1 == "FUNC\n":
-        l = decimal_a_binario(FUNC)
-        while len(l) != 14:
-            l.insert(0,0) 
+    l = binCon(imm1, 14) 
     arg = arg +str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
     arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) 
     arg = arg + str(l[8]) + str(l[9]) + str(l[10]) + str(l[11])
@@ -322,26 +289,7 @@ def j(imm):
 def jal(imm):
     arg = "0111" 
     imm1 = imm
-    if imm1 == "MAIN\n":
-        l = decimal_a_binario(MAIN)
-        while len(l) != 14:
-            l.insert(0,0) 
-    if imm1 == "INC\n":
-        l = decimal_a_binario(INC)
-        while len(l) != 14:
-            l.insert(0,0)
-    if imm1 == "DEC\n":
-        l = decimal_a_binario(DEC)
-        while len(l) != 14:
-            l.insert(0,0) 
-    if imm1 == "EXIT\n":
-        l = decimal_a_binario(EXIT)
-        while len(l) != 14:
-            l.insert(0,0) 
-    if imm1 == "FUNC\n":
-        l = decimal_a_binario(FUNC)
-        while len(l) != 14:
-            l.insert(0,0) 
+    l = binCon(imm1, 14)
     arg = arg +str(l[0]) + str(l[1]) + str(l[2]) + str(l[3])
     arg = arg + str(l[4]) + str(l[5]) + str(l[6]) + str(l[7]) 
     arg = arg + str(l[8]) + str(l[9]) + str(l[10]) + str(l[11])
@@ -442,6 +390,47 @@ def decimal_a_binario(num_dec):
         binarios a modo de matriz [0 x n]
         """
         return modulos
+#Funcion para calcular el complemento a2 de un registro binario
+def compl2(m):
+    #Calculo del complemento a 1: 
+    M = []
+    S = []
+    i = 0
+    while i != len(m):
+        if m[i] != 0: 
+            M.insert(0,0)
+        else:
+            M.insert(0,1)
+        i += 1
+        
+    #Suma de "1" al resultado del complemento a1 en
+    i = 0
+    carry = 0
+    init = 1 + M[i]
+    if init != 0: 
+        carry = 1
+    while i != len(m):
+        if carry != 0:
+            val = M[i] + carry
+            #val = carry + suma
+            print(val)
+            if val == 1:
+                S.insert(0, 1)
+                carry = 0 
+            elif val == 2:
+                S.insert(0, 0)
+                carry = 1            
+            else:
+                S.insert(0, val)
+                carry = 0
+        else: 
+            S.insert(0, M[i])
+        i += 1
+    #Resultado final
+    arg1 = str(S[0]) + str(S[1]) + str(S[2]) + str(S[3]) + str(S[4])
+    arg1 = arg1 + str(S[5]) + str(S[6]) + str(S[7])
+    return S
+    
 #Función para completar de bits matriz de conversión a binario
 def addvalues(m, lg, v):
     while len(m) != lg:
@@ -469,6 +458,6 @@ def write_down(filename, arg):
         f = open('salida4.txt', 'a')   
     f.write(arg)
     f.close()
-#
+#Main del código implementado
 if __name__ == "__main__":
     main()
