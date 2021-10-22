@@ -220,3 +220,16 @@ for line in f:
                 bina = formatStr.format(int(BranAddr))
                 machine_line += str(bina) 
         print(machine_line)
+    elif line[pos] in j_inst.keys():
+        machine_line += j_inst[line[pos]] 
+        if line[-1] in offsets.keys():
+            bina = "{:8b}".format(int(str(offsets[line[-1]]),10)).strip().zfill(14)
+            machine_line += bina #offset 
+        print(machine_line)
+
+    elif line[pos] in r_inst_jr.keys():
+        machine_line += r_inst_jr[line[pos]] 
+        machine_line += reg[line[-1]].ljust(14,"0")#reg 
+        print(machine_line)
+       
+    w.writelines(machine_line + '\n')  
