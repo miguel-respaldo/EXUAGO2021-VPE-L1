@@ -1,0 +1,57 @@
+	Python project: ISA
+
+In this file, we'll include the different points that describes the project
+and how it will be divided into modules to avoid merge conflicts.
+
+###Git Workflow
+
+We will use a basic techine of branching. We'll have a main line were the main
+project will be allocated, also, we'll create a branch called develop, were we
+will be working togheter to create the different modules needed.
+Each day, or whenever we are done with the work of the day, we will update the 
+develop branch, and push it into the remote repository using the github
+pull-requests tool to verify the changes.
+That will be the flow we'll try to follow to keep things in order.
+
+###Git Commit formats.
+
+As the project requires, we need to document each commit very well. So after a
+short research, I found a simple format to make a commit message. We'll use the
+format presented on the following link:
+https://codigofacilito.com/articulos/buenas-practicas-en-commits-de-git
+A good advice from the page, is to try to document everything in english, so
+this will be the language that we will be using, except in the info messages
+that the program will return to the user, for those we'll use spanish.
+Here is another webpage that is recommended to read:
+https://somostechies.com/05-cosas-que-no-debes-hacer-con-git/
+
+###Modules division of the project
+
+This is the first version of the document, so it's open to suggestions and
+changes. So feel free to comment your ideas.
+
+	---We need a module that will be executing the read of the file, also,
+	this module needs to read arguments from the command line, these
+	arguments are passed to the program when this is called to be
+	executed. Among the arguments needs to be teh name of the file that
+	contains the code the user wants to translate. Also it will receive
+	varios arguments to configure the behavior of the program. If they are 
+	not specified by the user, they'll have a default value.
+	
+	--It's necessary to have a module that process the list that the first
+	module returns. This list contains the code of the file that the user
+	has introduced. This module will execute a parse of the lines to
+	determine the equivalent code to that line, using de mnemonic, and the
+	arguments of the line.
+
+	--Also there needs to be a module that writes the processed code into
+	a new file in binary format, or a format specified by the user. Also
+	the name of this new file can be specified by the user, if it is'nt,
+	the program will use a standard name.
+
+	--The final file will be the main code for the project, named ISA.py.
+	We will include in this Pythin file the created modules to test them
+	and verify their functionallity.
+
+NOTES: This is just a draft, you can edit, or change something that may be
+wrong, including grammar or spelling mistakes.
