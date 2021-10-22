@@ -198,3 +198,10 @@ for line in f:
         machine_line += reg[line[-2]]
         machine_line += reg[line[-3]].ljust(8,"0")
         print(machine_line)
+    elif line[pos] in i_inst_mem.keys():
+        machine_line += i_inst_mem[line[pos]] 
+        machine_line += reg[line[-1]] #rs
+        machine_line += reg[line[-3]] #rt
+        machine_line += regOrConst(line[-2]) #offset 
+        print(machine_line)
+
