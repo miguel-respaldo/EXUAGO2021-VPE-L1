@@ -1,0 +1,9 @@
+La direccion del repositorio en la que se encuentra el proyecto es la
+siguiente:
+
+https://github.com/AlbaCM98/bootcamp-git/tree/master/Proj_python
+
+El repositorio esta como publico por lo que no se debe de tener problema para
+acceder a el. 
+
+Quedamos pendientes profe, muchas gracias por todo. 
