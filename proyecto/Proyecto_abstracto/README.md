@@ -1,5 +1,5 @@
 El archivo .py en donde se desarrollo el proyecto esta directamente en esta
-carpeta como "compilador.py". 
+direccion, dentro de la carpeta "Proyecto". 
 
 Equipo Proyecto_abstracto, integrantes Alba Castro y Jesus Apodaca.
 
