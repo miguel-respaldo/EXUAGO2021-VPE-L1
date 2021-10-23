@@ -12,7 +12,8 @@ from io import open
 def leer_archivo():
     ##nombre= eval(input("escriba el nombre del archivo "))
     try:
-         archivo= open("codigo1.txt","r")
+        f = open("codigo1.txt","r")
+        archivo=f.read()
     except:
         print ("error 404 not fount")        
     return archivo
@@ -28,20 +29,21 @@ def codifica(archivo):
      #       counter +=1
     lineas=archivo.count("\n")
     lineas+=1
-    texto= archivo.replace(' ','')
-    texto=texto.lower()
-
+    archivo = archivo.replace(' ','')
+    archivo = archivo.lower()
+    fill=open(
 #matrices para identificar y escribir  los opcodes
     codigos_operaciones = ['add','addi','and','andi','beq','bne','j','jal','jr','lb','or','sb','sll','srl']
     codigos_binarios=['0000','0001','0010','0011','0100','0101','0110','0111','1010','1011','1100','1101','1110','1111']
                      
     for i in range (lineas):
-        vista_aux= texto.readline()
+        vista_aux=['']
+        vista_aux= archivo.readline()
         etiqueta=vista_aux.split(':')
         memoria[linea]=etiqueta[0]
                
     for j in range (lineas):
-        vista_aux=texto.readline()
+        vista_aux=archivo.readline()
         ensamblar=vista_aux
         x1=vista_aux.find(':')
         if x1!=0:
