@@ -5,19 +5,19 @@
 #de nmemonicos y registros a interpretar en el archivo que se genera en lenguaje
 #maquina .bin
 
-from io import open     
+#from io import open     
 
 
 #Funcion para identificar y abrir el archivo a codificar, con extension .txt
-def leer_archivo():
-    #nombre= eval(input("escriba el nombre del archivo "))
+def leer_archivo (nombre, archivo):
+    nombre = file(input("Escriba el nombre del archivo, con la extension .txt"))
     #try:
-    f = open("codigo1.txt","r")
+    f = open(nombre,'r')
     archivo = f.read() 
     #except:
      #   print ("error 404 not fount") 
+    print("El archivo que se va a codificar es" , nombre)
     f.close()
-    print("El archivo que se va a codificar es el codigo1.txt")
     return archivo
 
 #Funcion que realiza el objetivo de programa
@@ -33,7 +33,7 @@ def codifica(archivo):
     lineas+=1
     archivo = archivo.replace(' ','')
     archivo = archivo.lower()
-    fill=open(
+   # file=open(
 #matrices para identificar y escribir  los opcodes
     codigos_operaciones = ['add','addi','and','andi','beq','bne','j','jal','jr','lb','or','sb','sll','srl']
     codigos_binarios=['0000','0001','0010','0011','0100','0101','0110','0111','1010','1011','1100','1101','1110','1111']
@@ -108,16 +108,18 @@ def rutina_etiqueta (salida_tex ,memory):
         return imm
 
 #Funcion para crear y escribir el archivo a mostrar como implementacion del programa
-def escribe_archivo(mensaje_final1):
-    name = input("Ingrese el nombre final que desea tenga su archivo binario")
+def escribe_archivo(mensaje_final):
+    name = file(input("Ingrese el nombre final que desea tenga su archivo
+        binario"))
     name+=".bin"
-    f = open(name,"w")
-    f.write(mensaje_final1)
+    f = open(name,'w')
+    f.write(mensaje_final)
     f.close()
     return
+
 archivo1=[]
 mensaje_final1=[]
-archivo1 = leer_archivo()
+archivo1 = leer_archivo(nombre, archivo)
 mensaje_final1 = codifica(archivo1)
 escribe_archivo(mensaje_final1)
 print("Archivo generado")
