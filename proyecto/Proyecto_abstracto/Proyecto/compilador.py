@@ -9,14 +9,14 @@
 
 
 #Funcion para identificar y abrir el archivo a codificar, con extension .txt
-def leer_archivo (nombre, archivo):
-    nombre = file(input("Escriba el nombre del archivo, con la extension .txt"))
+def leer_archivo ():
+    
     #try:
-    f = open(nombre,'r')
+    f = open("codigo1.txt",'r')
     archivo = f.read() 
     #except:
      #   print ("error 404 not fount") 
-    print("El archivo que se va a codificar es" , nombre)
+    #print("El archivo que se va a codificar es" , nombre)
     f.close()
     return archivo
 
@@ -29,6 +29,7 @@ def codifica(archivo):
    # for d in coli:
     #    if d:
      #       counter +=1
+
     lineas=archivo.count("\n")
     lineas+=1
     archivo = archivo.replace(' ','')
@@ -37,15 +38,19 @@ def codifica(archivo):
 #matrices para identificar y escribir  los opcodes
     codigos_operaciones = ['add','addi','and','andi','beq','bne','j','jal','jr','lb','or','sb','sll','srl']
     codigos_binarios=['0000','0001','0010','0011','0100','0101','0110','0111','1010','1011','1100','1101','1110','1111']
-                     
+    
+    archivox = open("codigo1.txt",'r')
+    memoria=[] 
     for i in range (lineas):
-        vista_aux=['']
-        vista_aux= archivo.readline()
-        etiqueta=vista_aux.split(':')
-        memoria[linea]=etiqueta[0]
+        vista_aux= archivox.readline()
+        etiquetax = vista_aux.find(':')
+        if etiquetax != 0:
+            etiqueta=vista_aux.split(':')
+            memoria[i]=etiqueta[0]
+
                
     for j in range (lineas):
-        vista_aux=archivo.readline()
+        vista_aux=archivox.readline()
         ensamblar=vista_aux
         x1=vista_aux.find(':')
         if x1!=0:
@@ -109,17 +114,15 @@ def rutina_etiqueta (salida_tex ,memory):
 
 #Funcion para crear y escribir el archivo a mostrar como implementacion del programa
 def escribe_archivo(mensaje_final):
-    name = file(input("Ingrese el nombre final que desea tenga su archivo
-        binario"))
-    name+=".bin"
-    f = open(name,'w')
+    
+    f = open("codigo1.bin",'w')
     f.write(mensaje_final)
     f.close()
     return
 
 archivo1=[]
 mensaje_final1=[]
-archivo1 = leer_archivo(nombre, archivo)
+archivo1 = leer_archivo()
 mensaje_final1 = codifica(archivo1)
 escribe_archivo(mensaje_final1)
 print("Archivo generado")
