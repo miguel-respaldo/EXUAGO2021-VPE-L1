@@ -1,10 +1,10 @@
-"""
-Proyecto final Ensamblador del equipo "Proyecto_abstracto" con Alba Castro y
-Jesus Apodaca.
-Este programa lee como entrada un archivo .txt que contiene las instrucciones de
-nmemonicos y registros a interpretar en el archivo que se genera en lenguaje
-maquina .bin
-"""
+
+#Proyecto final Ensamblador del equipo "Proyecto_abstracto" con Alba Castro y
+#Jesus Apodaca.
+#Este programa lee como entrada un archivo .txt que contiene las instrucciones
+#de nmemonicos y registros a interpretar en el archivo que se genera en lenguaje
+#maquina .bin
+
 from io import open     
 
 
